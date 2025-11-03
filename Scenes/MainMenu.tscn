@@ -1,6 +1,58 @@
-[gd_scene load_steps=2 format=3 uid="uid://dx4bxusk8cg17"]
+[gd_scene load_steps=11 format=3 uid="uid://dx4bxusk8cg17"]
 
 [ext_resource type="Script" uid="uid://cbucyqaf6w4t2" path="res://Script/script_MainMenu.gd" id="1_tt5f1"]
+[ext_resource type="Texture2D" uid="uid://c4af8jpkhi7w4" path="res://Art/UI/MainMenu/MainMene_Ship.png" id="3_ghw46"]
+[ext_resource type="Texture2D" uid="uid://by6350lhwumst" path="res://Art/UI/artWeaponDepthChargeProjectorMark6.jpg" id="4_8um5k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ghw46"]
+size = Vector2(396.5, 450.5)
+
+[sub_resource type="Curve" id="Curve_df05h"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_8um5k"]
+colors = PackedColorArray(0.7529412, 0.7529412, 0.7529412, 1, 0.7529412, 0.7529412, 0.7529412, 0)
+
+[sub_resource type="Animation" id="Animation_8saeu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1069, 490)]
+}
+
+[sub_resource type="Animation" id="Animation_ghw46"]
+resource_name = "ship_float"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1069, 490), Vector2(1069, 540), Vector2(1069, 490)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ghw46"]
+_data = {
+&"RESET": SubResource("Animation_8saeu"),
+&"ship_float": SubResource("Animation_ghw46")
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_853f1"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -10,55 +62,130 @@ offset_bottom = 1080.0
 size_flags_horizontal = 4
 script = ExtResource("1_tt5f1")
 
-[node name="TextureRect" type="TextureRect" parent="."]
-layout_mode = 0
-offset_right = 1920.0
-offset_bottom = 1080.0
+[node name="Background" type="Sprite2D" parent="."]
+hframes = 6
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="Ship" type="Node2D" parent="."]
+position = Vector2(1069, 490)
+
+[node name="ShipSprite" type="Sprite2D" parent="Ship"]
+position = Vector2(0, -23)
+texture = ExtResource("3_ghw46")
+
+[node name="Captain" type="Node2D" parent="Ship"]
+
+[node name="CaptainSprite" type="Sprite2D" parent="Ship/Captain"]
+
+[node name="CaptainClickArea" type="Area2D" parent="Ship/Captain"]
+
+[node name="Chimney" type="Node2D" parent="Ship"]
+
+[node name="ChimneySprite" type="Sprite2D" parent="Ship/Chimney"]
+
+[node name="ChimneyClickArea" type="Area2D" parent="Ship/Chimney"]
+z_index = 10
+position = Vector2(468, -70)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ship/Chimney/ChimneyClickArea"]
+position = Vector2(123, 53)
+shape = SubResource("RectangleShape2D_ghw46")
+
+[node name="SmokeParticles" type="CPUParticles2D" parent="Ship/Chimney"]
+emitting = false
+amount = 20
+texture = ExtResource("4_8um5k")
+lifetime = 2.0
+one_shot = true
+explosiveness = 0.8
+direction = Vector2(0, -1)
+gravity = Vector2(0, 0)
+initial_velocity_min = 30.0
+initial_velocity_max = 50.0
+scale_amount_min = 0.5
+scale_amount_curve = SubResource("Curve_df05h")
+color = Color(0.7529412, 0.7529412, 0.7529412, 1)
+color_ramp = SubResource("Gradient_8um5k")
+
+[node name="Horn" type="Node2D" parent="Ship"]
+
+[node name="HornSprite" type="Sprite2D" parent="Ship/Horn"]
+
+[node name="HornClickArea" type="Area2D" parent="Ship/Horn"]
+
+[node name="HornSound" type="AudioStreamPlayer" parent="Ship/Horn"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Ship"]
+libraries = {
+&"": SubResource("AnimationLibrary_ghw46")
+}
+
+[node name="SkyAndSea" type="Node2D" parent="."]
+
+[node name="Waves" type="AnimatedSprite2D" parent="SkyAndSea"]
+
+[node name="Clouds" type="Sprite2D" parent="SkyAndSea"]
+
+[node name="Seagulls" type="Node2D" parent="."]
+
+[node name="Seagull1" type="AnimatedSprite2D" parent="Seagulls"]
+
+[node name="Seagull2" type="AnimatedSprite2D" parent="Seagulls"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_853f1")
+}
+
+[node name="UIControl" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MenuVBoxContainer" type="VBoxContainer" parent="UIControl"]
 layout_mode = 0
 offset_left = 1456.0
 offset_top = 720.0
 offset_right = 1856.0
-offset_bottom = 1020.0
+offset_bottom = 1077.0
 theme_override_constants/separation = 12
 
-[node name="StartButton" type="Button" parent="VBoxContainer"]
+[node name="StartButton" type="Button" parent="UIControl/MenuVBoxContainer"]
 custom_minimum_size = Vector2(100, 72)
 layout_mode = 2
 text = "Start"
 
-[node name="LevelChoiceButton" type="Button" parent="VBoxContainer"]
+[node name="LevelChoiceButton" type="Button" parent="UIControl/MenuVBoxContainer"]
 custom_minimum_size = Vector2(0, 72)
 layout_mode = 2
 text = "Choice Level"
 
-[node name="SettingButton" type="Button" parent="VBoxContainer"]
+[node name="SettingButton" type="Button" parent="UIControl/MenuVBoxContainer"]
 custom_minimum_size = Vector2(0, 72)
 layout_mode = 2
 text = "Setting"
 
-[node name="ExitButton" type="Button" parent="VBoxContainer"]
+[node name="ExitButton" type="Button" parent="UIControl/MenuVBoxContainer"]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 text = "Exit"
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="Label" type="Label" parent="UIControl/MenuVBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 0.3529412)
 text = "Version 0.0.1"
 horizontal_alignment = 2
 
-[node name="Label" type="Label" parent="."]
+[node name="NameLabel" type="Label" parent="UIControl"]
 layout_mode = 0
-offset_left = 1424.0
-offset_top = 72.0
-offset_right = 1855.0
-offset_bottom = 171.0
+offset_left = 882.0
+offset_top = 75.0
+offset_right = 1853.0
+offset_bottom = 174.0
 theme_override_font_sizes/font_size = 72
-text = "Game Name"
+text = "WOWS_X_MiniGame_Project"
+horizontal_alignment = 2
 
-[connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/LevelChoiceButton" to="." method="_on_level_choice_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/SettingButton" to="." method="_on_setting_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="UIControl/MenuVBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="UIControl/MenuVBoxContainer/LevelChoiceButton" to="." method="_on_level_choice_button_pressed"]
+[connection signal="pressed" from="UIControl/MenuVBoxContainer/SettingButton" to="." method="_on_setting_button_pressed"]
+[connection signal="pressed" from="UIControl/MenuVBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
