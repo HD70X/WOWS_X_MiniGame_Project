@@ -4,12 +4,7 @@ extends Node2D
 @onready var click_area = $ChimneyClickArea
 
 func _ready():
-	print("Chimney 节点初始化")
-	click_area.mouse_entered.connect(_on_mouse_entered)
-	click_area.mouse_exited.connect(_on_mouse_exited)
+	pass
 
-func _on_mouse_entered():
-	print("🖱️ 鼠标进入烟囱区域")
-
-func _on_mouse_exited():
-	print("🖱️ 鼠标离开烟囱区域")
+func _on_chimney_click_area_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	smoke_particles.emitting = true
