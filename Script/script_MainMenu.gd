@@ -7,6 +7,7 @@ func _ready():
 	# $UIControl/MenuVBoxContainer/ExitButton.pressed.connect(_on_exit_button_pressed)
 	# mouse_filter = Control.MOUSE_FILTER_IGNORE
 	pass
+
 func _on_start_button_pressed():
 	get_tree().change_scene_to_file("res://Scenes/levelScene_level1.tscn")
 

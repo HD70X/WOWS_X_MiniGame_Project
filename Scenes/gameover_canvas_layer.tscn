@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://chq4qwawm7168"]
 
-[ext_resource type="Script" uid="uid://d1spf6y2k2h7v" path="res://Script/gameover_canvas_layer.gd" id="1_ibdgo"]
+[ext_resource type="Script" uid="uid://d1spf6y2k2h7v" path="res://Script/script_gameover.gd" id="1_ibdgo"]
 [ext_resource type="Texture2D" uid="uid://d3kei8b86hu6g" path="res://Art/UI/iconExperience.png" id="2_d3h2l"]
 [ext_resource type="Texture2D" uid="uid://b2nhp01dyikth" path="res://Art/UI/iconCredits.png" id="3_d7q36"]
 
