@@ -1,5 +1,6 @@
-[gd_scene load_steps=20 format=3 uid="uid://f6780xsmgc76"]
+[gd_scene load_steps=21 format=3 uid="uid://f6780xsmgc76"]
 
+[ext_resource type="Script" uid="uid://cpn75brwvol6q" path="res://Script/script_mainmenu_captain.gd" id="1_n608e"]
 [ext_resource type="Texture2D" uid="uid://dbibdkdybolv2" path="res://Art/Avatar/CaptainSprites/body.png" id="1_oju2o"]
 [ext_resource type="Texture2D" uid="uid://bjfsvu0v81br1" path="res://Art/Avatar/CaptainSprites/head.png" id="2_n608e"]
 [ext_resource type="Texture2D" uid="uid://shvrhrkd6sf5" path="res://Art/Avatar/CaptainSprites/headCap.png" id="3_8pk7s"]
@@ -14,10 +15,6 @@
 [ext_resource type="Texture2D" uid="uid://co3kcd84o2kvk" path="res://Art/Avatar/CaptainSprites/leg_right.png" id="12_85f6b"]
 [ext_resource type="Texture2D" uid="uid://cptelc74371i3" path="res://Art/Avatar/CaptainSprites/foot_right.png" id="13_bfsts"]
 [ext_resource type="Texture2D" uid="uid://csoywxbe6hjvc" path="res://Art/Avatar/CaptainSprites/All（合并）.png" id="14_47bg0"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w80lj"]
-radius = 69.0
-height = 234.0
 
 [sub_resource type="Animation" id="Animation_n608e"]
 length = 0.001
@@ -372,12 +369,12 @@ _data = {
 &"captain_use_telescope_animation": SubResource("Animation_oju2o")
 }
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w80lj"]
+radius = 148.0
+height = 542.0
+
 [node name="Captain" type="Node2D"]
-
-[node name="CaptainClickArea" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CaptainClickArea"]
-shape = SubResource("CapsuleShape2D_w80lj")
+script = ExtResource("1_n608e")
 
 [node name="Skeleton2D" type="Skeleton2D" parent="."]
 
@@ -386,10 +383,11 @@ position = Vector2(8, 97)
 rest = Transform2D(1, 0, 0, 1, 8, 97)
 
 [node name="Bone_Body" type="Bone2D" parent="Skeleton2D/Bone_Root"]
-scale = Vector2(0.9999998, 0.9999998)
+scale = Vector2(0.99999976, 0.99999976)
 rest = Transform2D(1, 0, 0, 1, 0, 0)
 
 [node name="Body" type="Sprite2D" parent="Skeleton2D/Bone_Root/Bone_Body"]
+z_index = 2
 position = Vector2(-0.13500023, -26)
 texture = ExtResource("1_oju2o")
 
@@ -398,7 +396,7 @@ position = Vector2(17, -113)
 rest = Transform2D(1, 0, 0, 1, 17, -113)
 
 [node name="Head" type="Sprite2D" parent="Skeleton2D/Bone_Root/Bone_Body/Bone_Head"]
-z_index = 1
+z_index = 3
 position = Vector2(-12, -71)
 texture = ExtResource("2_n608e")
 
@@ -407,7 +405,7 @@ position = Vector2(0, -106)
 rest = Transform2D(1, 0, 0, 1, 0, -106)
 
 [node name="Cap" type="Sprite2D" parent="Skeleton2D/Bone_Root/Bone_Body/Bone_Head/Bone_Cap"]
-z_index = 2
+z_index = 4
 position = Vector2(7, -81)
 texture = ExtResource("3_8pk7s")
 
@@ -416,7 +414,7 @@ position = Vector2(-67, -89)
 rest = Transform2D(1, 0, 0, 1, -67, -89)
 
 [node name="UpperArmRight" type="Sprite2D" parent="Skeleton2D/Bone_Root/Bone_Body/Bone_UpperArmRight"]
-z_index = -1
+z_index = 1
 position = Vector2(-15, 37)
 texture = ExtResource("7_4l06i")
 
@@ -425,7 +423,7 @@ position = Vector2(-19, 61)
 rest = Transform2D(1, 0, 0, 1, -19, 61)
 
 [node name="ForearmRight" type="Sprite2D" parent="Skeleton2D/Bone_Root/Bone_Body/Bone_UpperArmRight/Bone_ForearmRight"]
-z_index = -1
+z_index = 1
 position = Vector2(-15.470585, -9.255313)
 texture = ExtResource("8_lyccm")
 
@@ -434,12 +432,12 @@ position = Vector2(-47.872032, -16.681377)
 rest = Transform2D(1, 0, 0, 1, -47.872032, -16.681377)
 
 [node name="HandRight" type="Sprite2D" parent="Skeleton2D/Bone_Root/Bone_Body/Bone_UpperArmRight/Bone_ForearmRight/Bone_HandRight"]
-z_index = 2
+z_index = 4
 position = Vector2(-11, -5)
 texture = ExtResource("9_mj5ok")
 
 [node name="Telescope" type="Sprite2D" parent="Skeleton2D/Bone_Root/Bone_Body/Bone_UpperArmRight/Bone_ForearmRight/Bone_HandRight"]
-z_index = 2
+z_index = 4
 position = Vector2(75.875, -5.249999)
 scale = Vector2(0.78529406, 0.641129)
 texture = ExtResource("3_8pk7s")
@@ -449,6 +447,7 @@ position = Vector2(111, -71)
 rest = Transform2D(1, 0, 0, 1, 111, -71)
 
 [node name="UpperArmLeft" type="Sprite2D" parent="Skeleton2D/Bone_Root/Bone_Body/Bone_UpperArmLeft"]
+z_index = 2
 position = Vector2(0, 32)
 texture = ExtResource("4_4ie1s")
 
@@ -457,7 +456,7 @@ position = Vector2(6, 59)
 rest = Transform2D(1, 0, 0, 1, 6, 59)
 
 [node name="ForeamLeft" type="Sprite2D" parent="Skeleton2D/Bone_Root/Bone_Body/Bone_UpperArmLeft/Bone_ForearmLeft"]
-z_index = 3
+z_index = 5
 position = Vector2(-25, -13)
 texture = ExtResource("5_bqmvx")
 
@@ -466,7 +465,7 @@ position = Vector2(-48, -21)
 rest = Transform2D(1, 0, 0, 1, -48, -21)
 
 [node name="HandLeft" type="Sprite2D" parent="Skeleton2D/Bone_Root/Bone_Body/Bone_UpperArmLeft/Bone_ForearmLeft/Bone_HandLeft"]
-z_index = 2
+z_index = 4
 position = Vector2(-15, -6)
 texture = ExtResource("6_yakdq")
 
@@ -475,7 +474,7 @@ position = Vector2(-25, 55)
 rest = Transform2D(1, 0, 0, 1, -25, 55)
 
 [node name="LegRight" type="Sprite2D" parent="Skeleton2D/Bone_Root/Bone_LegRight"]
-z_index = -1
+z_index = 1
 position = Vector2(-4, 39)
 texture = ExtResource("12_85f6b")
 
@@ -484,7 +483,6 @@ position = Vector2(-5, 88)
 rest = Transform2D(1, 0, 0, 1, -5, 88)
 
 [node name="FootRight" type="Sprite2D" parent="Skeleton2D/Bone_Root/Bone_LegRight/Bone_FootRight"]
-z_index = -2
 position = Vector2(-34, 5)
 texture = ExtResource("13_bfsts")
 
@@ -493,7 +491,7 @@ position = Vector2(54, 60)
 rest = Transform2D(1, 0, 0, 1, 54, 60)
 
 [node name="LegLeft" type="Sprite2D" parent="Skeleton2D/Bone_Root/Bone_LegLeft"]
-z_index = -1
+z_index = 1
 position = Vector2(-14, 37)
 texture = ExtResource("10_rpalv")
 
@@ -502,7 +500,6 @@ position = Vector2(-3, 83)
 rest = Transform2D(1, 0, 0, 1, -3, 83)
 
 [node name="FootLeft" type="Sprite2D" parent="Skeleton2D/Bone_Root/Bone_LegLeft/Bone_FootLeft"]
-z_index = -2
 position = Vector2(-31, 6)
 texture = ExtResource("11_74dfl")
 
@@ -515,3 +512,13 @@ texture = ExtResource("14_47bg0")
 libraries = {
 &"": SubResource("AnimationLibrary_8pk7s")
 }
+
+[node name="CaptainClickArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CaptainClickArea"]
+z_index = 5
+position = Vector2(16, 0)
+shape = SubResource("CapsuleShape2D_w80lj")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="input_event" from="CaptainClickArea" to="." method="_on_captain_click_area_input_event"]

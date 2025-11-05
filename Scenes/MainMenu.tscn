@@ -1,10 +1,11 @@
-[gd_scene load_steps=24 format=3 uid="uid://dx4bxusk8cg17"]
+[gd_scene load_steps=25 format=3 uid="uid://dx4bxusk8cg17"]
 
 [ext_resource type="Script" uid="uid://cbucyqaf6w4t2" path="res://Script/script_MainMenu.gd" id="1_tt5f1"]
 [ext_resource type="Script" uid="uid://km52vv3xsef" path="res://Script/script_mainmenu_ship.gd" id="2_xim88"]
 [ext_resource type="Script" uid="uid://dtfl30wcm21jt" path="res://Script/script_mainmenu_chimney.gd" id="3_df05h"]
 [ext_resource type="Texture2D" uid="uid://c4af8jpkhi7w4" path="res://Art/UI/MainMenu/MainMene_Ship.png" id="3_ghw46"]
 [ext_resource type="Texture2D" uid="uid://by6350lhwumst" path="res://Art/UI/artWeaponDepthChargeProjectorMark6.jpg" id="4_8um5k"]
+[ext_resource type="PackedScene" uid="uid://f6780xsmgc76" path="res://Scenes/captain_Mainmenu.tscn" id="4_koqhg"]
 [ext_resource type="Script" uid="uid://c32e0jnqx0a3g" path="res://Script/script_mainmenu_horn.gd" id="5_df05h"]
 [ext_resource type="AudioStream" uid="uid://dgc0nbiskb1kl" path="res://Audio/SoundEffect/371535__robinhood76__06934-distant-ship-horn.wav" id="6_8um5k"]
 
@@ -93,9 +94,9 @@ script = ExtResource("2_xim88")
 position = Vector2(0, -23)
 texture = ExtResource("3_ghw46")
 
-[node name="Captain" type="Node2D" parent="Ship"]
-
-[node name="CaptainClickArea" type="Area2D" parent="Ship/Captain"]
+[node name="Captain" parent="Ship" instance=ExtResource("4_koqhg")]
+position = Vector2(-89, 118)
+scale = Vector2(0.745, 0.745)
 
 [node name="Chimney" type="Node2D" parent="Ship"]
 script = ExtResource("3_df05h")
@@ -112,6 +113,7 @@ position = Vector2(123, 53)
 shape = SubResource("RectangleShape2D_ghw46")
 
 [node name="SmokeParticles" type="CPUParticles2D" parent="Ship/Chimney"]
+position = Vector2(493, -278)
 emitting = false
 amount = 20
 texture = ExtResource("4_8um5k")
