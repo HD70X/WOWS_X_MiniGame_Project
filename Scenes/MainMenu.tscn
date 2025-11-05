@@ -95,8 +95,6 @@ texture = ExtResource("3_ghw46")
 
 [node name="Captain" type="Node2D" parent="Ship"]
 
-[node name="CaptainSprite" type="Sprite2D" parent="Ship/Captain"]
-
 [node name="CaptainClickArea" type="Area2D" parent="Ship/Captain"]
 
 [node name="Chimney" type="Node2D" parent="Ship"]

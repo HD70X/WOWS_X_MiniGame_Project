@@ -33,4 +33,3 @@ func _process(delta):
 			if recharge_timer >= RECHARGE_DELAY:
 				remaining_time += delta
 				remaining_time = min(remaining_time, MAX_WHISTLE_TIME)
-	print("充能", recharge_timer)
