@@ -1,6 +1,6 @@
 extends Node2D
 
-var submarine_scene = preload("res://Scenes/enemySubmaraine.tscn")
+var submarine_scene = preload("res://Scenes/Enemy/enemySubmaraine.tscn")
 var spawn_timer = 0
 var spawn_interval = 3.0  # 每3秒生成一艘潜艇
 var score = 0

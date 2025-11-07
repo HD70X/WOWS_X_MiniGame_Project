@@ -6,7 +6,7 @@ func _ready():
 	pass
 
 func _on_level_1_button_pressed():
-	get_tree().change_scene_to_file("res://Scenes/levelScene_level1.tscn")
+	get_tree().change_scene_to_file("res://Scenes/Level/levelScene_level1.tscn")
 
 func _on_back_button_pressed():
-	get_tree().change_scene_to_file("res://Scenes/MainMenu.tscn")
+	get_tree().change_scene_to_file("res://Scenes/Mainmenu/MainMenu.tscn")

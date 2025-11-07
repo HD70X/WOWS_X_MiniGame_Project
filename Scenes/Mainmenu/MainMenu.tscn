@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://dtfl30wcm21jt" path="res://Script/script_mainmenu_chimney.gd" id="3_df05h"]
 [ext_resource type="Texture2D" uid="uid://c4af8jpkhi7w4" path="res://Art/UI/MainMenu/MainMene_Ship.png" id="3_ghw46"]
 [ext_resource type="Texture2D" uid="uid://by6350lhwumst" path="res://Art/UI/artWeaponDepthChargeProjectorMark6.jpg" id="4_8um5k"]
-[ext_resource type="PackedScene" uid="uid://f6780xsmgc76" path="res://Scenes/captain_Mainmenu.tscn" id="4_koqhg"]
+[ext_resource type="PackedScene" uid="uid://f6780xsmgc76" path="res://Scenes/Mainmenu/captain_Mainmenu.tscn" id="4_koqhg"]
 [ext_resource type="Script" uid="uid://c32e0jnqx0a3g" path="res://Script/script_mainmenu_horn.gd" id="5_df05h"]
 [ext_resource type="AudioStream" uid="uid://dgc0nbiskb1kl" path="res://Audio/SoundEffect/371535__robinhood76__06934-distant-ship-horn.wav" id="6_8um5k"]
 

@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://knfvtmq4hu7k"]
+
+[ext_resource type="Script" uid="uid://b8tf2qulp165a" path="res://Script/script_base_level.gd" id="1_nh5gf"]
+[ext_resource type="Texture2D" uid="uid://bynr4ck3a400r" path="res://Art/Avatar/artBackGroundWaterLine.jpg" id="2_5qnim"]
+[ext_resource type="PackedScene" uid="uid://m11wmhshgt5k" path="res://Scenes/Player/playerShip.tscn" id="3_w4vo8"]
+[ext_resource type="PackedScene" uid="uid://chq4qwawm7168" path="res://Scenes/UI/gameover_canvas_layer.tscn" id="4_4jehl"]
+[ext_resource type="PackedScene" uid="uid://csd4bul22od8h" path="res://Scenes/UI/panelPuse.tscn" id="5_c76yh"]
+
+[node name="LevelScene1" type="Node2D"]
+script = ExtResource("1_nh5gf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(959.5, 540)
+scale = Vector2(3.13235, 2.64706)
+texture = ExtResource("2_5qnim")
+
+[node name="ShipCharacterNode" parent="." instance=ExtResource("3_w4vo8")]
+position = Vector2(912, 375)
+
+[node name="HUDCanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ShipHPProgressBar" type="ProgressBar" parent="HUDCanvasLayer"]
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 293.0
+offset_bottom = 38.0
+
+[node name="ScoreLabel" type="Label" parent="HUDCanvasLayer"]
+offset_left = 902.0
+offset_top = 4.0
+offset_right = 1033.0
+offset_bottom = 33.0
+
+[node name="GameOverUI" parent="." instance=ExtResource("4_4jehl")]
+
+[node name="PanelPuse" parent="." instance=ExtResource("5_c76yh")]

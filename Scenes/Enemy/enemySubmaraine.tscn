@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://c6vgbokhpoitq"]
 
-[ext_resource type="Texture2D" uid="uid://csyrdqahf8j4f" path="res://Art/Avatar/artSubmarine.png" id="1_kkolb"]
-[ext_resource type="Script" uid="uid://bk807h7a4ndt1" path="res://Script/script_submarine.gd" id="2_1lsit"]
-[ext_resource type="Texture2D" uid="uid://ymkdqb3543ep" path="res://Art/UI/subHpBarBack.png" id="3_4fd70"]
-[ext_resource type="Texture2D" uid="uid://7n2n3s4r147a" path="res://Art/UI/subHpBarProgress.png" id="4_si3sp"]
-[ext_resource type="Texture2D" uid="uid://3fdpqev5jirs" path="res://Art/UI/subHpBarFrame.png" id="5_4d8i4"]
+[ext_resource type="Script" uid="uid://bk807h7a4ndt1" path="res://Script/script_submarine.gd" id="1_majdp"]
+[ext_resource type="Texture2D" uid="uid://csyrdqahf8j4f" path="res://Art/Avatar/artSubmarine.png" id="2_xowht"]
+[ext_resource type="Texture2D" uid="uid://ymkdqb3543ep" path="res://Art/UI/subHpBarBack.png" id="3_i8g6h"]
+[ext_resource type="Texture2D" uid="uid://3fdpqev5jirs" path="res://Art/UI/subHpBarFrame.png" id="4_cadbd"]
+[ext_resource type="Texture2D" uid="uid://7n2n3s4r147a" path="res://Art/UI/subHpBarProgress.png" id="5_6xn4i"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1lsit"]
 radius = 16.9991
@@ -13,12 +13,12 @@ height = 254.0
 [node name="SubmaraineRigidBody2D" type="Area2D" groups=["submariner"]]
 collision_layer = 2
 collision_mask = 2
-script = ExtResource("2_1lsit")
+script = ExtResource("1_majdp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-0.107056, -15.25)
 scale = Vector2(0.0796316, 0.0796316)
-texture = ExtResource("1_kkolb")
+texture = ExtResource("2_xowht")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.107117, -0.25008)
@@ -31,6 +31,6 @@ offset_top = -64.0
 offset_right = 162.0
 offset_bottom = -4.0
 scale = Vector2(0.52311164, 0.36747906)
-texture_under = ExtResource("3_4fd70")
-texture_over = ExtResource("5_4d8i4")
-texture_progress = ExtResource("4_si3sp")
+texture_under = ExtResource("3_i8g6h")
+texture_over = ExtResource("4_cadbd")
+texture_progress = ExtResource("5_6xn4i")

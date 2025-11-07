@@ -2,7 +2,7 @@ extends Area2D
 
 var speed = 50
 var direction = 1  # 1向右，-1向左
-var torpedo_scene = preload("res://Scenes/projectorTorpedo.tscn")
+var torpedo_scene = preload("res://Scenes/Enemy/EnemyWeapon/projectorEnemyTorpedo.tscn")
 var shoot_cooldown = 2.0  # 发射间隔
 var can_shoot_topedo = true
 var hp = 2

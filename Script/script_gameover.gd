@@ -43,4 +43,4 @@ func _on_retry_button_pressed():
 func _on_back_button_pressed():
 	get_tree().paused = false
 	# 如果有主菜单
-	get_tree().change_scene_to_file("res://Scenes/MainMenu.tscn")
+	get_tree().change_scene_to_file("res://Scenes/Mainmenu/MainMenu.tscn")
