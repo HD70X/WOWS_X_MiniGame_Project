@@ -1,7 +1,9 @@
-[gd_scene load_steps=25 format=3 uid="uid://dx4bxusk8cg17"]
+[gd_scene load_steps=27 format=3 uid="uid://dx4bxusk8cg17"]
 
 [ext_resource type="Script" uid="uid://cbucyqaf6w4t2" path="res://Script/script_MainMenu.gd" id="1_tt5f1"]
+[ext_resource type="PackedScene" uid="uid://knfvtmq4hu7k" path="res://Scenes/Level/levelScene_level1.tscn" id="2_ritqm"]
 [ext_resource type="Script" uid="uid://km52vv3xsef" path="res://Script/script_mainmenu_ship.gd" id="2_xim88"]
+[ext_resource type="PackedScene" uid="uid://ckpm66veavaxh" path="res://Scenes/Mainmenu/LevelChoiceMenu.tscn" id="3_aaq5r"]
 [ext_resource type="Script" uid="uid://dtfl30wcm21jt" path="res://Script/script_mainmenu_chimney.gd" id="3_df05h"]
 [ext_resource type="Texture2D" uid="uid://c4af8jpkhi7w4" path="res://Art/UI/MainMenu/MainMene_Ship.png" id="3_ghw46"]
 [ext_resource type="Texture2D" uid="uid://by6350lhwumst" path="res://Art/UI/artWeaponDepthChargeProjectorMark6.jpg" id="4_8um5k"]
@@ -82,6 +84,8 @@ layout_mode = 3
 anchors_preset = 0
 mouse_filter = 2
 script = ExtResource("1_tt5f1")
+initial_level_scene = ExtResource("2_ritqm")
+level_choice_scene = ExtResource("3_aaq5r")
 
 [node name="Background" type="Sprite2D" parent="."]
 hframes = 6

@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://3juml2qd6c2"]
+[gd_scene load_steps=3 format=3 uid="uid://3juml2qd6c2"]
 
 [ext_resource type="Texture2D" uid="uid://by6350lhwumst" path="res://Art/UI/artWeaponDepthChargeProjectorMark6.jpg" id="1_f42rx"]
+[ext_resource type="Script" uid="uid://byop3xkdy6twm" path="res://Script/script_player_weapon_charger_launcher.gd" id="1_oaxn8"]
 
 [node name="playerWeaponChargerLauncher" type="Node2D"]
+script = ExtResource("1_oaxn8")
 
 [node name="Launcher" type="Node2D" parent="."]
 
