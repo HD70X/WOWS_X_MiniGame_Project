@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://3juml2qd6c2"]
+
+[ext_resource type="Texture2D" uid="uid://by6350lhwumst" path="res://Art/UI/artWeaponDepthChargeProjectorMark6.jpg" id="1_f42rx"]
+
+[node name="playerWeaponChargerLauncher" type="Node2D"]
+
+[node name="Launcher" type="Node2D" parent="."]
+
+[node name="LauncherSprite" type="Sprite2D" parent="Launcher"]
+position = Vector2(80, -136)
+texture = ExtResource("1_f42rx")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Launcher"]
+
+[node name="ProjectileSpawnPoint" type="Marker2D" parent="."]
+position = Vector2(200, -216)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

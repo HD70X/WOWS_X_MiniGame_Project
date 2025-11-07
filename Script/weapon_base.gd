@@ -35,8 +35,7 @@ func fire():
 		return
 	# 确认发射修改发射状态
 	can_fire = false
-	# 扣除一发弹药
-	projector_num -= 1
+
 	# 如果有动画就播放，没有就直接生成投射物
 	if animation_player and animation_player.has_animation("weapon_fire"):
 		animation_player.play("weapon_fire")
@@ -44,27 +43,29 @@ func fire():
 	else:
 		spawn_projectile()
 	
-	# 启动冷却
-	await get_tree().create_timer(fire_cooldown).timeout
-	can_fire = true
-	
+	# 扣除一发弹药
+	projector_num -= 1
 	# 如果弹药不满，则尝试启动弹药装填
 	if projector_num < projector_num_max and not is_loading:
-		start_loading()
+		reloading()
 	
+		# 启动冷却
+	await get_tree().create_timer(fire_cooldown).timeout
+	can_fire = true
+
 # 弹药管理
-func start_loading():
-	is_loading = true
-	
-	# 循环装填弹药
-	while projector_num < projector_num_max:
-		# 等待装填时间
-		await get_tree().create_timer(loading_cooldown).timeout
-		# 装填完成，弹药总数加1
-		projector_num += 1
-	
-	# 循环装填完成，弹药已满
-	is_loading = false
+func reloading():
+	projector_num = projector_num_max
+	## 循环装填弹药
+	#is_loading = true
+	#while projector_num < projector_num_max:
+		## 等待装填时间
+		#await get_tree().create_timer(loading_cooldown).timeout
+		## 装填完成，弹药总数加1
+		#projector_num += 1
+	#
+	## 循环装填完成，弹药已满
+	#is_loading = false
 
 # 创建投射物
 func spawn_projectile():
