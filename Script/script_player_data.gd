@@ -1,29 +1,25 @@
 extends Node
 
-# 玩家基础信息
-var player_name: String = "Player"
-var battles_played: int = 0
-
 # 经济计算常量
 const SCORE_TO_CREDITS: float = 0.2
 const SCORE_TO_EXPERIENCE: float = 0.1
 
-# 关卡进度
-var unlocked_levels: Array = [1]  # 已解锁的关卡
-var level_scores: Dictionary = {}  # 每关的最高分数
-var level_stars: Dictionary = {}   # 每关的星级评价
+# 玩家基础信息
+var player_name: String = "新玩家"
 
 # 游戏货币/资源
-var credits: int = 1000 # 创建银币，并赋值初始单位1000枚
-var experience: int = 0 # 玩家经验
+var credits: int = 0 # 创建银币，并赋值初始单位1000枚
+var total_exp: int = 0 # 玩家经验
+var current_exp: int = 0 # 玩家经验
 
-# 解锁内容
+# 关卡进度
+var level_progress: int = 1  # 已解锁的关卡
 
-# 当前装备配置(从 ShipConfig 迁移过来)
-var current_ship: String = "res://Scenes/playerShip.tscn"
-var equipped_weapons: Array = ["res://Scenes/PlayerWeapon/weapon_depth_charge_node_2d.tscn", "", ""]
-var equipped_defense = null
-var equipped_engine = null
+# 舰船改装
+var equipped_hull: int = 0
+var equipped_engine: int = 0
+var equipped_bridge: int = 0
+var equipped_weapons: Array = [0,0,0]
 
 # 游戏设置
 var sound_volume: float = 1.0
@@ -41,20 +37,33 @@ func complete_battle(score: int):
 	var earned_credits = int(score * SCORE_TO_CREDITS)
 	credits += earned_credits
 	var earned_experience = int(score * SCORE_TO_EXPERIENCE)
-	experience += earned_experience
-	battles_played += 1
-	save_data()
+	current_exp += earned_experience
+	save_game()
 	return {
 		"credits": earned_credits,
 		"experience": earned_experience
 	}
 
 # 储存数据
-func save_data():
+func save_game():
+	var save_data = {
+		"player_name": player_name,
+		"total_exp": total_exp,
+		"current_exp": current_exp,
+		"credits": credits,
+		"level_progress": level_progress,
+		"equipped_hull": equipped_hull,
+		"equipped_engine": equipped_engine,
+		"equipped_bridge": equipped_bridge,
+		"equipped_weapons": equipped_weapons
+	}
+	# 转换数据为json格式
+	var json_string = JSON.stringify(save_data)
+	
+	#写入文件
 	var save_file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 	var data = {
 		"credits": credits,
-		"battles_played": battles_played,
 		"experience": experience
 	}
 	save_file.store_var(data)
@@ -66,5 +75,4 @@ func load_data():
 	var data = save_file.get_var()
 	
 	credits = data.get("credits", 1000)
-	battles_played = data.get("battle_played", 0)
 	experience = data.get("experience", 0)

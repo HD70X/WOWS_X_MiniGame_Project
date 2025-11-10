@@ -1,10 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://3juml2qd6c2"]
+[gd_scene load_steps=4 format=3 uid="uid://3juml2qd6c2"]
 
 [ext_resource type="Texture2D" uid="uid://by6350lhwumst" path="res://Art/UI/artWeaponDepthChargeProjectorMark6.jpg" id="1_f42rx"]
 [ext_resource type="Script" uid="uid://byop3xkdy6twm" path="res://Script/script_player_weapon_charger_launcher.gd" id="1_oaxn8"]
+[ext_resource type="PackedScene" uid="uid://uu76h3tsogj6" path="res://Scenes/Player/PlayerWeapon/projectorDepthCharger.tscn" id="2_pyjwu"]
 
 [node name="playerWeaponChargerLauncher" type="Node2D"]
 script = ExtResource("1_oaxn8")
+weapon_name = "Depth Charger Launcher"
+fire_cooldown = 0.3
+loading_cooldown = 0.5
+projectile_scene = ExtResource("2_pyjwu")
 
 [node name="Launcher" type="Node2D" parent="."]
 

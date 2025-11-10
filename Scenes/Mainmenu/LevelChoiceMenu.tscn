@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ckpm66veavaxh"]
 
-[ext_resource type="Script" uid="uid://ccx4uqln2lu2e" path="res://Script/script_LevelChoiceMenu.gd" id="1_0co11"]
+[ext_resource type="Script" uid="uid://ccx4uqln2lu2e" path="res://Script/script_level_choice_menu.gd" id="1_0co11"]
 
 [node name="Control" type="Control"]
 custom_minimum_size = Vector2(1920, 1080)

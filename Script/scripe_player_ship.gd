@@ -29,8 +29,9 @@ func _ready():
 func load_equipment_from_config():
 	# 从全局配置（PlayerData 单例）读取玩家在船坞中配置的装备
 	equipped_weapons = PlayerData.equipped_weapons
-	equipped_defense = PlayerData.equipped_defense
+	equipped_hull = PlayerData.equipped_hull
 	equipped_engine = PlayerData.equipped_engine
+	equipped_bridge = PlayerData.equipped_bridge
 
 # 计算舰船正确属性
 func calculate_stats():

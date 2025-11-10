@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://uu76h3tsogj6"]
 
-[ext_resource type="Script" uid="uid://osn140aj6skv" path="res://Script/scriptDepthCharger.gd" id="1_eexuw"]
+[ext_resource type="Script" uid="uid://osn140aj6skv" path="res://Script/script_depth_charger.gd" id="1_eexuw"]
 [ext_resource type="Texture2D" uid="uid://dpjjo7fynimfb" path="res://Art/Avatar/artDepthCharger.png" id="2_s11vj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j6n0p"]
