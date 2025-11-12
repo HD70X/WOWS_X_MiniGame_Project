@@ -18,7 +18,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 PlayerData="*res://Script/script_player_data.gd"
-WeaponManager="*res://Script/script_equipment_manager.gd"
+EquipmentManager="*res://Script/script_equipment_manager.gd"
+SaveManager="*res://Script/script_save_manager.gd"
 
 [display]
 

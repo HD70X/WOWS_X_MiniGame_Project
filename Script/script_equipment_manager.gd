@@ -6,7 +6,9 @@ enum WeaponType {
 }
 
 enum EngineTyep {
-	DEFAULT
+	DEFAULT,
+	ENHANCE,
+	TOP
 }
 
 const WEAPON_SCENE = {
