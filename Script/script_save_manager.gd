@@ -105,11 +105,9 @@ func load_game(character_id: int) -> Dictionary:
 		return create_default_character_data(character_id) 
 
 func create_default_character_data(character_id) -> Dictionary:
-	return {
-		"character_id": character_id,
-		"name": "Captain Cap",
-		"level": 1
-	}
+	PlayerData.reset_to_default(character_id, "Captain Cap")
+	var def_data = PlayerData.get_all_data()
+	return def_data
 
 # 获取当前玩家的player_id
 func get_player_id() -> int:
