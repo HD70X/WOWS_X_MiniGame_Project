@@ -6,8 +6,10 @@ var character_id: int = 0
 # 角色基本信息
 var character_name: String = "Captain Cap"
 
-# 关卡进度
+# 进度
 var level_unlock: int = 1  # 已解锁的关卡
+var unlocked_achievements: Array = ["first_kill", "depth_master", "survivor"]
+var unlocked_tech: Array = ["torpedo_mk2", "reinforced_hull", "sonar_upgrade"]
 
 # 游戏货币/资源
 var credits: int = 0 # 创建银币，并赋值初始单位1000枚
@@ -48,6 +50,8 @@ func get_all_data() -> Dictionary:
 		"credits": credits,
 		"weapons": weapons,
 		"ship_upgrades": ship_upgrades,
+		"unlocked_achievements": unlocked_achievements,
+		"unlocked_tech": unlocked_tech
 	}
 
 # 从字典加载数据（加载存档）
@@ -68,6 +72,10 @@ func get_all_data() -> Dictionary:
 		#weapons = data["weapons"]
 	#if data.has("ship_upgrades"):
 		#ship_upgrades = data["ship_upgrades"]
+	#if data.has("unlocked_achievements"):
+		#unlocked_achievements = data["unlocked_achievements"]
+	#if data.has("unlocked_tech"):
+		#unlocked_tech = data["unlocked_tech"]
 
 func load_from_dict(data: Dictionary) -> void:
 	var fields = {
@@ -78,7 +86,9 @@ func load_from_dict(data: Dictionary) -> void:
 		"total_exp": "total_exp",
 		"credits": "credits",
 		"weapons": "weapons",
-		"ship_upgrades": "ship_upgrades"
+		"ship_upgrades": "ship_upgrades",
+		"unlocked_achievements": "unlocked_achievements",
+		"unlocked_tech": "unlocked_tech"
 	}
 	
 	for key in fields:
@@ -106,3 +116,5 @@ func reset_to_default(new_character_id: int, player_input_name: String) -> void:
 		"engine_level": 1,
 		"bridge_level": 1
 	}
+	unlocked_achievements = []
+	unlocked_tech = []
