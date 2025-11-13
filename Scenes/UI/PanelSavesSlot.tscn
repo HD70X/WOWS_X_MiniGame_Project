@@ -1,0 +1,85 @@
+[gd_scene load_steps=4 format=3 uid="uid://djr4n2xd8vuc2"]
+
+[ext_resource type="Theme" uid="uid://bsk7cnee24ood" path="res://Art/Theme Styles/panelSaveSlot.tres" id="2_lyk8p"]
+[ext_resource type="Script" uid="uid://mvecxdurrq3o" path="res://Script/script_saves_slot.gd" id="2_waqf5"]
+[ext_resource type="Texture2D" uid="uid://d3kei8b86hu6g" path="res://Art/UI/iconExperience.png" id="3_waqf5"]
+
+[node name="SavesSlot" type="Button"]
+custom_minimum_size = Vector2(1000, 200)
+offset_right = 1000.0
+offset_bottom = 200.0
+theme = ExtResource("2_lyk8p")
+toggle_mode = true
+action_mode = 0
+keep_pressed_outside = true
+script = ExtResource("2_waqf5")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 1000.0
+offset_bottom = 200.0
+theme = ExtResource("2_lyk8p")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+
+[node name="SaveScreenShot" type="TextureRect" parent="MarginContainer/HBoxContainer/Control"]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="PointIcon" type="TextureRect" parent="MarginContainer/HBoxContainer/Control"]
+visible = false
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_waqf5")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 10
+
+[node name="CharacterName" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Name"
+
+[node name="SavingTime" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+self_modulate = Color(0.58431375, 0.58431375, 0.58431375, 1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "CreatTime"
+
+[node name="CharacterLevel" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+self_modulate = Color(0.58431375, 0.58431375, 0.58431375, 1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Level 1"

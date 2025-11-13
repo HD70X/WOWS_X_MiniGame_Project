@@ -5,6 +5,7 @@ var character_id: int = 0
 
 # 角色基本信息
 var character_name: String = "Captain Cap"
+var character_level: int = 1
 
 # 进度
 var level_unlock: int = 1  # 已解锁的关卡
@@ -44,6 +45,7 @@ func get_all_data() -> Dictionary:
 	return {
 		"character_id": character_id,
 		"character_name": character_name,
+		"character_level": character_level,
 		"level_unlock": level_unlock,
 		"current_exp": current_exp,
 		"total_exp": total_exp,
@@ -60,6 +62,8 @@ func get_all_data() -> Dictionary:
 		#character_id = data["character_id"]
 	#if data.has("character_name"):
 		#character_name = data["character_name"]
+	#if data.has("character_level"):
+		#character_level = data["character_level"]
 	#if data.has("level_unlock"):
 		#level_unlock = data["level_unlock"]
 	#if data.has("current_exp"):
@@ -81,6 +85,7 @@ func load_from_dict(data: Dictionary) -> void:
 	var fields = {
 		"character_id": "character_id",
 		"character_name": "character_name",
+		"character_level": "character_level",
 		"level_unlock": "level_unlock",
 		"current_exp": "current_exp",
 		"total_exp": "total_exp",

@@ -45,6 +45,8 @@ func save_game(character_id: int):
 	var file_path = get_character_file_path(character_id)
 	var back_path = file_path + ".bak"
 	var data = PlayerData.get_all_data()
+	var data_to_save = data.duplicate()
+	data_to_save["saving_time"] = Time.get_datetime_dict_from_system()
 	
 	# 如果正式存档存在，先备份
 	if FileAccess.file_exists(file_path):
@@ -52,9 +54,9 @@ func save_game(character_id: int):
 		if not old_data.is_empty():
 			save_data(back_path, old_data)
 	# 保存新数据到正式存档
-	if save_data(file_path, data):
+	if save_data(file_path, data_to_save):
 		# 成功后更新临时存档
-		def_save(data)
+		def_save(data_to_save)
 		return true
 	return false
 
