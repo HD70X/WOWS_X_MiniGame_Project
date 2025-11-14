@@ -1,7 +1,6 @@
 extends Control
 
-@export var initial_level_scene: PackedScene
-@export var level_choice_scene: PackedScene
+@export var character_select_scene: PackedScene
 
 func _ready():
 	# $UIControl/MenuVBoxContainer/StartButton.pressed.connect(_on_start_button_pressed)
@@ -12,10 +11,10 @@ func _ready():
 	pass
 
 func _on_start_button_pressed():
-	get_tree().change_scene_to_packed(initial_level_scene)
+	get_tree().change_scene_to_packed(character_select_scene)
 
 func _on_level_choice_button_pressed():
-	get_tree().change_scene_to_packed(level_choice_scene)
+	get_tree().change_scene_to_packed(character_select_scene)
 
 func _on_setting_button_pressed():
 	get_tree().paused = true

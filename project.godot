@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 PlayerData="*res://Script/script_player_data.gd"
 EquipmentManager="*res://Script/script_equipment_manager.gd"
 SaveManager="*res://Script/script_save_manager.gd"
+CharacterManager="*res://Script/script_character_manager.gd"
 
 [display]
 

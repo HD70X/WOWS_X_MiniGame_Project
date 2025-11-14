@@ -1,9 +1,8 @@
-extends PanelContainer
+extends Button
 
-signal slot_clicked(character_id: int)
+signal  slot_selected(character_id: int)
 
 var character_id: int
-var is_selected: bool = false
 
 # 更新节点路径以匹配新结构
 @onready var name_label = $MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/CharacterName
@@ -13,7 +12,10 @@ var is_selected: bool = false
 @onready var point_icon = $MarginContainer/HBoxContainer/Control/PointIcon
 
 func _ready():
-	gui_input.connect(_on_gui_input)
+	toggle_mode = true
+	toggled.connect(_on_toggled)
+	mouse_entered.connect(_on_mouse_entered)
+	mouse_exited.connect(_on_mouse_exited)
 	point_icon.visible = false  # 默认隐藏角标
 
 func setup(data: Dictionary):
@@ -33,17 +35,18 @@ func setup(data: Dictionary):
 	level_label.text = "Lv.%d" % data["level"]
 	
 	# 如果有截图数据可以在这里加载
-	screenshot.texture = "res://Art/Avatar/CaptainSprites/head.png"
+	screenshot.texture = load("res://Art/Avatar/CaptainSprites/head.png")
 
-func _on_gui_input(event: InputEvent):
-	if event is InputEventMouseButton:
-		if event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-			slot_clicked.emit(character_id)
+func _on_toggled(toggled_state: bool):
+	if toggled_state:
+		slot_selected.emit(character_id)
 
-func set_selected(selected: bool):
-	is_selected = selected
-	# 通过切换主题实现选中高亮（需要在编辑器中配置主题变体）
-	if selected:
-		add_theme_stylebox_override("panel", preload("res://Art/Theme Styles/selected_panel.tres"))
-	else:
-		remove_theme_stylebox_override("panel")
+# 用于调整选定状态
+func set_select_state(selected: bool):
+	button_pressed = selected
+
+# 控制鼠标悬停显示pointIcon指引
+func _on_mouse_entered() -> void:
+	point_icon.visible = true
+func _on_mouse_exited() -> void:
+	point_icon.visible = false

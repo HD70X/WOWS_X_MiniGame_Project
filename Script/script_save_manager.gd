@@ -1,12 +1,12 @@
 extends Node
 
-const SAVE_DIR = "user://"
+const SAVE_DIR = "user://characters/"
 const SAVE_FILE_PREFIX = "character_"
-const SAVE_FILE_EXTENSION = ".json"
-const DEF_SAVE_PATH = "user://character_def.json"
+const SAVE_FILE_EXTENSION = ".save"
+const DEF_SAVE_PATH = "user://characters/character_def.save"
 
 func get_character_file_path(character_id: int) -> String:
-	return SAVE_DIR + SAVE_FILE_PREFIX + "%03d" % character_id + SAVE_FILE_EXTENSION
+	return SAVE_DIR + SAVE_FILE_PREFIX + str(character_id) + SAVE_FILE_EXTENSION
 
 # 通用的储存脚本
 func save_data(file_path: String, data: Dictionary) -> bool:
