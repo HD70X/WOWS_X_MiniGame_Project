@@ -3,6 +3,7 @@ extends Button
 signal  slot_selected(character_id: int)
 
 var character_id: int
+var is_updating: bool = false
 
 # 更新节点路径以匹配新结构
 @onready var name_label = $MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/CharacterName
@@ -24,26 +25,39 @@ func setup(data: Dictionary):
 	
 	# 格式化存档时间
 	if data.has("saving_time"):
-		var time_dict = data["saving_time"]
-		time_label.text = "%d-%02d-%02d %02d:%02d" % [
-			time_dict["year"], time_dict["month"], time_dict["day"],
-			time_dict["hour"], time_dict["minute"]
-			]
+		var saving_time = data["saving_time"]
+		# 如果是数字（Unix时间戳），转换为字典
+		if typeof(saving_time) == TYPE_FLOAT or typeof(saving_time) == TYPE_INT:
+			var time_dict = Time.get_datetime_dict_from_unix_time(int(saving_time))
+			time_label.text = "%d-%02d-%02d %02d:%02d" % [
+				time_dict["year"], time_dict["month"], time_dict["day"],
+				time_dict["hour"], time_dict["minute"]
+				]
+		# 如果已经是字典格式
+		elif typeof(saving_time) == TYPE_DICTIONARY:
+			time_label.text = "%d-%02d-%02d %02d:%02d" % [
+				saving_time["year"], saving_time["month"], saving_time["day"],
+				saving_time["hour"], saving_time["minute"]
+				]
 	else:
 		time_label.text = "未知时间"
 	
-	level_label.text = "Lv.%d" % data["level"]
+	level_label.text = "Lv.%d" % data["character_level"]
 	
 	# 如果有截图数据可以在这里加载
 	screenshot.texture = load("res://Art/Avatar/CaptainSprites/head.png")
 
 func _on_toggled(toggled_state: bool):
+	if is_updating:
+		return
 	if toggled_state:
 		slot_selected.emit(character_id)
 
 # 用于调整选定状态
 func set_select_state(selected: bool):
+	is_updating = true
 	button_pressed = selected
+	is_updating = false
 
 # 控制鼠标悬停显示pointIcon指引
 func _on_mouse_entered() -> void:

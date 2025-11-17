@@ -48,7 +48,7 @@ func save_game(character_id: int):
 	var back_path = file_path + ".bak"
 	var data = PlayerData.get_all_data()
 	var data_to_save = data.duplicate()
-	data_to_save["saving_time"] = Time.get_datetime_dict_from_system()
+	data_to_save["saving_time"] = Time.get_unix_time_from_system()
 	# 如果正式存档存在，先备份
 	if FileAccess.file_exists(file_path):
 		var old_data = load_data(file_path)
@@ -115,3 +115,6 @@ func create_default_character_data(character_id) -> Dictionary:
 # 获取当前玩家的player_id
 func get_player_id() -> int:
 	return PlayerData.character_id
+
+func load_default():
+	var data = load_data(DEF_SAVE_PATH)

@@ -48,9 +48,11 @@ theme_override_font_sizes/font_size = 32
 text = "Select Character"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(1160, 760)
 layout_mode = 2
 
 [node name="SaveListContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer"]
+custom_minimum_size = Vector2(1140, 760)
 layout_mode = 2
 theme_override_constants/separation = 12
 
@@ -80,9 +82,15 @@ theme_override_font_sizes/font_size = 24
 disabled = true
 text = "Delet"
 
+[node name="ReturnButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Return"
+
 [node name="CreateCharacterPanel" parent="PanelContainer/MarginContainer" instance=ExtResource("4_lom5o")]
 visible = false
 
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/CreatButton" to="." method="_on_creat_button_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/DeleteButton" to="." method="_on_delete_button_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ReturnButton" to="." method="_on_return_button_pressed"]

@@ -1,6 +1,6 @@
 extends Node
 
-const SAVE_PATH = "res://characters/"
+const SAVE_PATH = "user://characters/"
 
 func _ready() -> void:
 	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(SAVE_PATH))
@@ -10,7 +10,6 @@ func get_all_character() -> Array:
 	# 检查目录，如果不存在返回空数组
 	if not DirAccess.dir_exists_absolute(SAVE_PATH):
 		DirAccess.make_dir_absolute(SAVE_PATH)
-
 		return characters
 	#打开目录
 	var dir = DirAccess.open(SAVE_PATH)
@@ -22,7 +21,7 @@ func get_all_character() -> Array:
 	var file_name = dir.get_next()
 	while file_name != "":
 		# 筛选save文件
-		if file_name.end_with(".save"):
+		if file_name.ends_with(".save"):
 			# 不处理默认存档
 			if file_name != "character_def.save":
 				# 不打开字典的前提下提取角色ID（去掉扩展名和前缀，只要序号）
@@ -35,7 +34,7 @@ func get_all_character() -> Array:
 	dir.list_dir_end()
 	# 按保存时间排序
 	characters.sort_custom(func(a,b):
-		return a.get("saving_time", 0) >= b.get("saving_time", 0)
+		return a.get("saving_time", 0) > b.get("saving_time", 0)
 	)
 	return characters
 
