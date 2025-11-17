@@ -62,7 +62,6 @@ func _on_play_button_pressed() -> void:
 		PlayerData.load_from_dict(SaveManager.load_game(selected_character_id))
 		get_tree().change_scene_to_file("res://Scenes/Level/levelScene_level1.tscn")
 
-
 func _on_delete_button_pressed() -> void:
 	if selected_character_id != -1:
 		CharacterManager.delete_character(selected_character_id)
