@@ -30,17 +30,17 @@ func _ready():
 func load_equipment_from_config():
 	# 从全局配置（PlayerData 单例）读取玩家在船坞中配置的装备
 	equipped_weapons = PlayerData.weapons
-	equipped_hull = PlayerData.ship_upgrades.get("")
-	equipped_engine = PlayerData.equipped_engine
-	equipped_bridge = PlayerData.equipped_bridge
+	equipped_hull = PlayerData.ship_upgrades.get("hull_type")
+	equipped_engine = PlayerData.ship_upgrades.get("engine_type")
+	equipped_bridge = PlayerData.ship_upgrades.get("bridge_type")
 
 # 计算舰船正确属性
 func calculate_stats():
 	current_max_hp = base_hp
 	current_speed = base_speed
 	# 如果安装了组件，按照安装组件重新计算hp和速度
-	if equipped_defense:
-		current_max_hp += equipped_defense.hp_bonus
+	if equipped_hull:
+		current_max_hp += equipped_hull.hp_bonus
 	if equipped_engine:
 		current_speed *= equipped_engine.speed_multiplier
 	hp = current_max_hp
