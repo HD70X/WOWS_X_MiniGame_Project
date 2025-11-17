@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="wowsav10"
+config/name="WOWS_X_MiniGame_Project"
 run/main_scene="uid://dx4bxusk8cg17"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"

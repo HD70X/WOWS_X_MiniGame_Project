@@ -6,6 +6,8 @@ const SAVE_FILE_EXTENSION = ".save"
 const DEF_SAVE_PATH = "user://characters/character_def.save"
 
 func get_character_file_path(character_id: int) -> String:
+	var global_path = SAVE_DIR
+	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(global_path))
 	return SAVE_DIR + SAVE_FILE_PREFIX + str(character_id) + SAVE_FILE_EXTENSION
 
 # 通用的储存脚本
@@ -47,7 +49,6 @@ func save_game(character_id: int):
 	var data = PlayerData.get_all_data()
 	var data_to_save = data.duplicate()
 	data_to_save["saving_time"] = Time.get_datetime_dict_from_system()
-	
 	# 如果正式存档存在，先备份
 	if FileAccess.file_exists(file_path):
 		var old_data = load_data(file_path)
