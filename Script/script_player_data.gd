@@ -30,9 +30,9 @@ var weapons: Dictionary = {
 
 # 舰船改装
 var ship_upgrades: Dictionary = {
-	"hull_level": 1,
-	"engine_level": 1,
-	"bridge_level": 1
+	"hull_type": "DEFAULT",
+	"engine_type": "DEFAULT",
+	"bridge_type": "DEFAULT"
 }
 
 # 游戏设置
@@ -117,9 +117,9 @@ func reset_to_default(new_character_id: int, player_input_name: String) -> void:
 		"weapon_slot_3": null
 	}
 	ship_upgrades = {
-		"hull_level": 1,
-		"engine_level": 1,
-		"bridge_level": 1
+		"hull_type": "DEFAULT",
+		"engine_type": "DEFAULT",
+		"bridge_type": "DEFAULT"
 	}
 	unlocked_achievements = []
 	unlocked_tech = []

@@ -6,10 +6,11 @@ var base_hp: int = 100
 var hp: int
 
 # 模块化属性
-var equipped_weapons: Array = [] # 储存装备的武器路径
+var equipped_weapons: Dictionary = {} # 储存装备的武器路径
 var weapon_nodes: Array = []  # 存储实例化的武器节点
-var equipped_defense: Node = null
+var equipped_hull: Node = null
 var equipped_engine: Node = null
+var equipped_bridge: Node = null
 
 # 计算后的属性
 var current_max_hp: int
@@ -28,8 +29,8 @@ func _ready():
 # 从全局配置中读取玩家的装备
 func load_equipment_from_config():
 	# 从全局配置（PlayerData 单例）读取玩家在船坞中配置的装备
-	equipped_weapons = PlayerData.equipped_weapons
-	equipped_hull = PlayerData.equipped_hull
+	equipped_weapons = PlayerData.weapons
+	equipped_hull = PlayerData.ship_upgrades.get("")
 	equipped_engine = PlayerData.equipped_engine
 	equipped_bridge = PlayerData.equipped_bridge
 

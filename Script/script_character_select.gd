@@ -67,9 +67,10 @@ func _on_delete_button_pressed() -> void:
 		CharacterManager.delete_character(selected_character_id)
 		refresh_save_list()
 
-func _on_character_created():
+func _on_character_created(character_id):
 		refresh_save_list()
-
+		PlayerData.load_from_dict(SaveManager.load_game(character_id))
+		#get_tree().change_scene_to_file("res://Scenes/Level/levelScene_level1.tscn")
 
 func _on_return_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/Mainmenu/MainMenu.tscn")
