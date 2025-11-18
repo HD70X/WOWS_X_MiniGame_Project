@@ -116,5 +116,6 @@ func create_default_character_data(character_id) -> Dictionary:
 func get_player_id() -> int:
 	return PlayerData.character_id
 
-func load_default():
+func load_default() -> Dictionary:
 	var data = load_data(DEF_SAVE_PATH)
+	return data

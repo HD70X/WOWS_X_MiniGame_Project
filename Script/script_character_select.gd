@@ -60,6 +60,7 @@ func _on_creat_button_pressed() -> void:
 func _on_play_button_pressed() -> void:
 	if selected_character_id != -1:
 		PlayerData.load_from_dict(SaveManager.load_game(selected_character_id))
+		# SaveManager.def_save(SaveManager.load_game(selected_character_id))
 		get_tree().change_scene_to_file("res://Scenes/Level/levelScene_level1.tscn")
 
 func _on_delete_button_pressed() -> void:
@@ -70,6 +71,7 @@ func _on_delete_button_pressed() -> void:
 func _on_character_created(character_id):
 		refresh_save_list()
 		PlayerData.load_from_dict(SaveManager.load_game(character_id))
+		# SaveManager.def_save(SaveManager.load_game(character_id))
 		#get_tree().change_scene_to_file("res://Scenes/Level/levelScene_level1.tscn")
 
 func _on_return_button_pressed() -> void:

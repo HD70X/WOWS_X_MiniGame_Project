@@ -18,7 +18,7 @@ func _ready():
 	$ShipCharacterNode.ship_destroyed.connect(_on_ship_destroyed)
 	
 	# 初始换舰船hp显示
-	$HUDCanvasLayer/ShipHPProgressBar.max_value = $ShipCharacterNode.max_hp
+	$HUDCanvasLayer/ShipHPProgressBar.max_value = $ShipCharacterNode.current_max_hp
 	$HUDCanvasLayer/ShipHPProgressBar.value = $ShipCharacterNode.hp
 	
 	update_score_display()

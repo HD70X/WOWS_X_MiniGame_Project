@@ -18,14 +18,16 @@ texture = ExtResource("1_a6dia")
 position = Vector2(28.5, -6.5)
 shape = SubResource("RectangleShape2D_oxjg5")
 
-[node name="WeaponSlots" type="Node" parent="."]
+[node name="WeaponSlots" type="Node2D" parent="."]
 
 [node name="WeaponSlot1" type="Marker2D" parent="WeaponSlots"]
-position = Vector2(-68, -20)
+position = Vector2(127, -30)
 
 [node name="WeaponSlot2" type="Marker2D" parent="WeaponSlots"]
+position = Vector2(0, -18)
 
 [node name="WeaponSlot3" type="Marker2D" parent="WeaponSlots"]
+position = Vector2(-69, -18)
 
 [node name="EquipmentSlots" type="Node" parent="."]
 

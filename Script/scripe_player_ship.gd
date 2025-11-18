@@ -8,9 +8,9 @@ var hp: int
 # 模块化属性
 var equipped_weapons: Dictionary = {} # 储存装备的武器路径
 var weapon_nodes: Array = []  # 存储实例化的武器节点
-var equipped_hull: Node = null
-var equipped_engine: Node = null
-var equipped_bridge: Node = null
+var equipped_hull: int
+var equipped_engine: int
+var equipped_bridge: int
 
 # 计算后的属性
 var current_max_hp: int
@@ -33,31 +33,42 @@ func load_equipment_from_config():
 	equipped_hull = PlayerData.ship_upgrades.get("hull_type")
 	equipped_engine = PlayerData.ship_upgrades.get("engine_type")
 	equipped_bridge = PlayerData.ship_upgrades.get("bridge_type")
-
 # 计算舰船正确属性
 func calculate_stats():
 	current_max_hp = base_hp
 	current_speed = base_speed
-	# 如果安装了组件，按照安装组件重新计算hp和速度
-	if equipped_hull:
-		current_max_hp += equipped_hull.hp_bonus
-	if equipped_engine:
-		current_speed *= equipped_engine.speed_multiplier
+	# 按照安装组件重新计算hp和速度
+	var hull_content = EquipmentManager.HULL_STATS.get(equipped_hull)
+	current_max_hp += hull_content.get("hp_bonus")
+	#if equipped_engine:
+		#current_speed *= equipped_engine.get("speed_bonus")/100
 	hp = current_max_hp
 
 # 实例化武器
 func instantiate_weapons():
-	# 在武器槽位置实例化武器
 	var weapon_slots = $WeaponSlots.get_children()
 	weapon_nodes.clear()
-	
-	for i in range(min(equipped_weapons.size(), weapon_slots.size())):
-		var weapon_scene = load(equipped_weapons[i])
-		# 将equipped_weapons中的组件创建为临时实例weapon
+	# 遍历每个武器槽位
+	for i in range(weapon_slots.size()):
+		var slot_key = "weapon_slot_%d" % (i + 1)
+		var weapon_enum = equipped_weapons.get(slot_key, 0)
+
+		# 如果是 NONE 或不存在，跳过
+		if weapon_enum == EquipmentManager.WeaponType.NONE:
+			continue
+
+		# 根据枚举值获取武器场景路径
+		var weapon_path = EquipmentManager.WEAPON_STATS.get(weapon_enum).get("scene_path")
+		if weapon_path == "":
+			continue
+
+		# 加载并实例化武器
+		var weapon_scene = load(weapon_path)
 		var weapon = weapon_scene.instantiate()
-		# 将实例写入slots
+
+		# 挂载到对应槽位
 		weapon_slots[i].add_child(weapon)
-		weapon_nodes.append(weapon) # 这里将武器添加到数组中
+		weapon_nodes.append(weapon)
 
 # 每时刻需要进行的运算
 func _physics_process(delta):

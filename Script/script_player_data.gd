@@ -23,16 +23,16 @@ const SCORE_TO_EXPERIENCE: float = 0.1
 
 # 舰船武器
 var weapons: Dictionary = {
-	"weapon_slot_1": null,
-	"weapon_slot_2": null,
-	"weapon_slot_3": null
+	"weapon_slot_1": EquipmentManager.WeaponType.NONE,
+	"weapon_slot_2": EquipmentManager.WeaponType.DEPTH_CHARGE_DEF,
+	"weapon_slot_3": EquipmentManager.WeaponType.NONE
 }
 
 # 舰船改装
 var ship_upgrades: Dictionary = {
-	"hull_type": "DEFAULT",
-	"engine_type": "DEFAULT",
-	"bridge_type": "DEFAULT"
+	"hull_type": EquipmentManager.HullTyep.DEFAULT,
+	"engine_type": EquipmentManager.EngineTyep.DEFAULT,
+	"bridge_type": EquipmentManager.BridgeTyep.DEFAULT
 }
 
 # 游戏设置
@@ -57,48 +57,39 @@ func get_all_data() -> Dictionary:
 	}
 
 # 从字典加载数据（加载存档）
-#func load_from_dict(data: Dictionary) -> void:
-	#if data.has("character_id"):
-		#character_id = data["character_id"]
-	#if data.has("character_name"):
-		#character_name = data["character_name"]
-	#if data.has("character_level"):
-		#character_level = data["character_level"]
-	#if data.has("level_unlock"):
-		#level_unlock = data["level_unlock"]
-	#if data.has("current_exp"):
-		#current_exp = data["current_exp"]
-	#if data.has("total_exp"):
-		#total_exp = data["total_exp"]
-	#if data.has("credits"):
-		#credits = data["credits"]
-	#if data.has("weapons"):
-		#weapons = data["weapons"]
-	#if data.has("ship_upgrades"):
-		#ship_upgrades = data["ship_upgrades"]
-	#if data.has("unlocked_achievements"):
-		#unlocked_achievements = data["unlocked_achievements"]
-	#if data.has("unlocked_tech"):
-		#unlocked_tech = data["unlocked_tech"]
-
 func load_from_dict(data: Dictionary) -> void:
-	var fields = {
-		"character_id": "character_id",
-		"character_name": "character_name",
-		"character_level": "character_level",
-		"level_unlock": "level_unlock",
-		"current_exp": "current_exp",
-		"total_exp": "total_exp",
-		"credits": "credits",
-		"weapons": "weapons",
-		"ship_upgrades": "ship_upgrades",
-		"unlocked_achievements": "unlocked_achievements",
-		"unlocked_tech": "unlocked_tech"
-	}
-	
-	for key in fields:
-		if data.has(key):
-			set(fields[key], data[key])
+	if data.has("character_id"):
+		character_id = data["character_id"]
+	if data.has("character_name"):
+		character_name = data["character_name"]
+	if data.has("character_level"):
+		character_level = data["character_level"]
+	if data.has("level_unlock"):
+		level_unlock = data["level_unlock"]
+	if data.has("current_exp"):
+		current_exp = data["current_exp"]
+	if data.has("total_exp"):
+		total_exp = data["total_exp"]
+	if data.has("credits"):
+		credits = data["credits"]
+	if data.has("weapons"):
+		var weapon_data = data["weapons"]
+		weapons = {
+			"weapon_slot_1": int(weapon_data.get("weapon_slot_1")),
+			"weapon_slot_2": int(weapon_data.get("weapon_slot_2")),
+			"weapon_slot_3": int(weapon_data.get("weapon_slot_3")),
+		}
+	if data.has("ship_upgrades"):
+		var ship_upgrades_data = data["ship_upgrades"]
+		ship_upgrades = {
+			"hull_type": int(ship_upgrades_data.get("hull_type")),
+			"engine_type": int(ship_upgrades_data.get("engine_type")),
+			"bridge_type": int(ship_upgrades_data.get("bridge_type"))
+		}
+	if data.has("unlocked_achievements"):
+		unlocked_achievements = data["unlocked_achievements"]
+	if data.has("unlocked_tech"):
+		unlocked_tech = data["unlocked_tech"]
 
 # 设置为默认数据
 func reset_to_default(new_character_id: int, player_input_name: String) -> void:
@@ -112,14 +103,14 @@ func reset_to_default(new_character_id: int, player_input_name: String) -> void:
 	current_exp = 0
 	credits = 0
 	weapons = {
-		"weapon_slot_1": null,
-		"weapon_slot_2": null,
-		"weapon_slot_3": null
+		"weapon_slot_1": EquipmentManager.WeaponType.NONE,
+		"weapon_slot_2": EquipmentManager.WeaponType.DEPTH_CHARGE_DEF,
+		"weapon_slot_3": EquipmentManager.WeaponType.NONE
 	}
 	ship_upgrades = {
-		"hull_type": "DEFAULT",
-		"engine_type": "DEFAULT",
-		"bridge_type": "DEFAULT"
+		"hull_type": EquipmentManager.HullTyep.DEFAULT,
+		"engine_type": EquipmentManager.EngineTyep.DEFAULT,
+		"bridge_type": EquipmentManager.BridgeTyep.DEFAULT
 	}
 	unlocked_achievements = []
 	unlocked_tech = []
