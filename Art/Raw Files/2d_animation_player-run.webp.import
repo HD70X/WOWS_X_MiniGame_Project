@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bsfunlx2nphds"
-path="res://.godot/imported/maxresdefault.jpg-88d9b0ef529303ae3d7e3b8ee3c1ba59.ctex"
+uid="uid://wjfftsljtarh"
+path="res://.godot/imported/2d_animation_player-run.webp-56c4f53680b9cecd21ee84fdb972037d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/maxresdefault.jpg"
-dest_files=["res://.godot/imported/maxresdefault.jpg-88d9b0ef529303ae3d7e3b8ee3c1ba59.ctex"]
+source_file="res://Art/Raw Files/2d_animation_player-run.webp"
+dest_files=["res://.godot/imported/2d_animation_player-run.webp-56c4f53680b9cecd21ee84fdb972037d.ctex"]
 
 [params]
 

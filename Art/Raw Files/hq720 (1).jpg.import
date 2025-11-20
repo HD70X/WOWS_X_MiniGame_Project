@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dl5dj6vr8f8h7"
-path="res://.godot/imported/maxresdefault-1.jpg-106ec93fa0bc24b6c6d46bcc89ca8cbd.ctex"
+uid="uid://cqwiee6adiv00"
+path="res://.godot/imported/hq720 (1).jpg-d6857ea96e9c1cf820307a1b5fbf99e6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/maxresdefault-1.jpg"
-dest_files=["res://.godot/imported/maxresdefault-1.jpg-106ec93fa0bc24b6c6d46bcc89ca8cbd.ctex"]
+source_file="res://Art/Raw Files/hq720 (1).jpg"
+dest_files=["res://.godot/imported/hq720 (1).jpg-d6857ea96e9c1cf820307a1b5fbf99e6.ctex"]
 
 [params]
 

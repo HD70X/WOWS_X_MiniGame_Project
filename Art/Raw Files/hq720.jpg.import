@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://18mjn6eev0cm"
-path="res://.godot/imported/hq720 (2).jpg-5abc5698e5a6b360831cb8389bf247c5.ctex"
+uid="uid://bvgalq1vendse"
+path="res://.godot/imported/hq720.jpg-d4959667d31019dc48364e0f831b2dec.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/hq720 (2).jpg"
-dest_files=["res://.godot/imported/hq720 (2).jpg-5abc5698e5a6b360831cb8389bf247c5.ctex"]
+source_file="res://Art/Raw Files/hq720.jpg"
+dest_files=["res://.godot/imported/hq720.jpg-d4959667d31019dc48364e0f831b2dec.ctex"]
 
 [params]
 

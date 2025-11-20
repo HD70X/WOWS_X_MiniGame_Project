@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemSingle" load_steps=2 format=3 uid="uid://cjqb1hjb1myby"]
+
+[ext_resource type="Script" uid="uid://dl1beystjqpks" path="res://Script/script_item_single.gd" id="1_1q6cl"]
+
+[resource]
+script = ExtResource("1_1q6cl")
+item_Type = 1
+unlocked_weapon_slots = [false, true, false]
+item_id = "user_bridge_default"
+item_name = "Default Bridge"
+unlock_exp = 0
+unlock_credits = 0
+metadata/_custom_type_script = "uid://dl1beystjqpks"

@@ -9,8 +9,6 @@ var character_level: int = 1
 
 # 进度
 var level_unlock: int = 1  # 已解锁的关卡
-var unlocked_achievements: Array = ["first_kill", "depth_master", "survivor"]
-var unlocked_tech: Array = ["torpedo_mk2", "reinforced_hull", "sonar_upgrade"]
 
 # 游戏货币/资源
 var credits: int = 0 # 创建银币，并赋值初始单位1000枚
@@ -21,19 +19,33 @@ var current_exp: int = 0 # 玩家经验
 const SCORE_TO_CREDITS: float = 0.2
 const SCORE_TO_EXPERIENCE: float = 0.1
 
-# 舰船武器
-var weapons: Dictionary = {
-	"weapon_slot_1": EquipmentManager.WeaponType.NONE,
-	"weapon_slot_2": EquipmentManager.WeaponType.DEPTH_CHARGE_DEF,
-	"weapon_slot_3": EquipmentManager.WeaponType.NONE
+# 道具解锁/安装/库存
+@export var unlocked_items: Array = []
+@export var equiped_items: Dictionary = {
+	"weapon_slot_1": null,
+	"weapon_slot_2": null,
+	"weapon_slot_3": null,
+	"hull_type": null,
+	"engine_type": null,
+	"bridge_type": null
+}
+@export var inventory: Dictionary = {
+	
 }
 
-# 舰船改装
-var ship_upgrades: Dictionary = {
-	"hull_type": EquipmentManager.HullTyep.DEFAULT,
-	"engine_type": EquipmentManager.EngineTyep.DEFAULT,
-	"bridge_type": EquipmentManager.BridgeTyep.DEFAULT
-}
+## 舰船武器
+#var weapons: Dictionary = {
+	#"weapon_slot_1": EquipmentManager.WeaponType.NONE,
+	#"weapon_slot_2": EquipmentManager.WeaponType.DEPTH_CHARGE_DEF,
+	#"weapon_slot_3": EquipmentManager.WeaponType.NONE
+#}
+#
+## 舰船改装
+#var ship_upgrades: Dictionary = {
+	#"hull_type": EquipmentManager.HullTyep.DEFAULT,
+	#"engine_type": EquipmentManager.EngineTyep.DEFAULT,
+	#"bridge_type": EquipmentManager.BridgeTyep.DEFAULT
+#}
 
 # 游戏设置
 var sound_volume: float = 1.0
@@ -50,46 +62,30 @@ func get_all_data() -> Dictionary:
 		"current_exp": current_exp,
 		"total_exp": total_exp,
 		"credits": credits,
-		"weapons": weapons,
-		"ship_upgrades": ship_upgrades,
-		"unlocked_achievements": unlocked_achievements,
-		"unlocked_tech": unlocked_tech
+		"equiped_items": equiped_items,
+		"unlocked_items": unlocked_items,
+		"inventory": inventory
 	}
 
 # 从字典加载数据（加载存档）
 func load_from_dict(data: Dictionary) -> void:
-	if data.has("character_id"):
-		character_id = data["character_id"]
+	# 定义需要处理的整数字段
+	var int_fields = ["character_id", "character_level", "level_unlock", "current_exp", "total_exp", "credits"]
+	# 循环处理整数字段
+	for field in int_fields:
+		if data.has(field):
+			set(field, data[field])
+			# set(field, int(data[field]))
+	
+	# 字符串字段
 	if data.has("character_name"):
 		character_name = data["character_name"]
-	if data.has("character_level"):
-		character_level = data["character_level"]
-	if data.has("level_unlock"):
-		level_unlock = data["level_unlock"]
-	if data.has("current_exp"):
-		current_exp = data["current_exp"]
-	if data.has("total_exp"):
-		total_exp = data["total_exp"]
-	if data.has("credits"):
-		credits = data["credits"]
-	if data.has("weapons"):
-		var weapon_data = data["weapons"]
-		weapons = {
-			"weapon_slot_1": int(weapon_data.get("weapon_slot_1")),
-			"weapon_slot_2": int(weapon_data.get("weapon_slot_2")),
-			"weapon_slot_3": int(weapon_data.get("weapon_slot_3")),
-		}
-	if data.has("ship_upgrades"):
-		var ship_upgrades_data = data["ship_upgrades"]
-		ship_upgrades = {
-			"hull_type": int(ship_upgrades_data.get("hull_type")),
-			"engine_type": int(ship_upgrades_data.get("engine_type")),
-			"bridge_type": int(ship_upgrades_data.get("bridge_type"))
-		}
-	if data.has("unlocked_achievements"):
-		unlocked_achievements = data["unlocked_achievements"]
-	if data.has("unlocked_tech"):
-		unlocked_tech = data["unlocked_tech"]
+	
+	# 复杂类型字段(数组/字典)
+	var complex_fields = ["equiped_items", "unlocked_items", "inventory"]
+	for field in complex_fields:
+		if data.has(field):
+			set(field, data[field])
 
 # 设置为默认数据
 func reset_to_default(new_character_id: int, player_input_name: String) -> void:
@@ -102,15 +98,12 @@ func reset_to_default(new_character_id: int, player_input_name: String) -> void:
 	total_exp = 0
 	current_exp = 0
 	credits = 0
-	weapons = {
-		"weapon_slot_1": EquipmentManager.WeaponType.NONE,
-		"weapon_slot_2": EquipmentManager.WeaponType.DEPTH_CHARGE_DEF,
-		"weapon_slot_3": EquipmentManager.WeaponType.NONE
+	unlocked_items = []
+	equiped_items = {
+		"weapon_slot_1": null,
+		"weapon_slot_2": "player_weapon_depth_charge",
+		"weapon_slot_3": null,
+		"hull_type": "user_hull_default",
+		"engine_type": "user_engine_default",
+		"bridge_type": "user_bridge_default"
 	}
-	ship_upgrades = {
-		"hull_type": EquipmentManager.HullTyep.DEFAULT,
-		"engine_type": EquipmentManager.EngineTyep.DEFAULT,
-		"bridge_type": EquipmentManager.BridgeTyep.DEFAULT
-	}
-	unlocked_achievements = []
-	unlocked_tech = []

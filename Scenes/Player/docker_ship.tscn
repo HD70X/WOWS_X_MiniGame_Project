@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://bewrt1dpkip21"]
+
+[ext_resource type="Texture2D" uid="uid://baci5h1rhpyab" path="res://Art/Avatar/artShip.png" id="1_67yvr"]
+
+[node name="DockerShip" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(43.5, -37)
+scale = Vector2(1.305, 1)
+texture = ExtResource("1_67yvr")
+
+[node name="WeaponSlots" type="Node2D" parent="."]
+
+[node name="WeaponSlot1" type="Node2D" parent="WeaponSlots"]
+position = Vector2(127, -30)
+
+[node name="WeaponSlot2" type="Node2D" parent="WeaponSlots"]
+position = Vector2(0, -18)
+
+[node name="WeaponSlot3" type="Node2D" parent="WeaponSlots"]
+position = Vector2(-69, -18)
+
+[node name="EquipmentSlots" type="Node2D" parent="."]
+
+[node name="HullUpgrade" type="Node2D" parent="EquipmentSlots"]
+
+[node name="EngineUpgrade" type="Node2D" parent="EquipmentSlots"]
+
+[node name="BridgeUpgrade" type="Node2D" parent="EquipmentSlots"]

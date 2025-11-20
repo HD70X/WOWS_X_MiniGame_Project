@@ -12,14 +12,14 @@ func get_character_file_path(character_id: int) -> String:
 
 # 通用的储存脚本
 func save_data(file_path: String, data: Dictionary) -> bool:
+	# print("保存时检查：", data)
 	# 打开保存文件
 	var file = FileAccess.open(file_path, FileAccess.WRITE)
 	if file == null:
 		# push_error("无法打开文件: " + file_path)
 		return false
 	# 将数据转换为Json格式
-	var json_file = JSON.stringify(data)
-	file.store_string(json_file)
+	file.store_var(data)
 	file.close()
 	return true
 
@@ -31,10 +31,11 @@ func load_data(file_path: String):
 	var file = FileAccess.open(file_path, FileAccess.READ)
 	if file == null:
 		return {}
-	var json_string = file.get_as_text()
+	# 使用二进制读取
+	var data = file.get_var()
 	file.close()
-	var parsed = JSON.parse_string(json_string)
-	return parsed
+	# print("读取时检查：", data)
+	return data if data != null else {}
 
 # 默认储存的方法
 func def_save(data):
