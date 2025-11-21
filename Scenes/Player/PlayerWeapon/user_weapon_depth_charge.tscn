@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://3juml2qd6c2"]
 
-[ext_resource type="Texture2D" uid="uid://by6350lhwumst" path="res://Art/UI/artWeaponDepthChargeProjectorMark6.jpg" id="1_f42rx"]
 [ext_resource type="Script" uid="uid://byop3xkdy6twm" path="res://Script/script_player_weapon_charger_launcher.gd" id="1_oaxn8"]
 [ext_resource type="PackedScene" uid="uid://uu76h3tsogj6" path="res://Scenes/Player/PlayerWeapon/user_project_depth_charge.tscn" id="2_pyjwu"]
+[ext_resource type="Texture2D" uid="uid://b53ee6qr4hagj" path="res://Art/UI/temp_place_holder_128.png" id="3_kuf0w"]
 
 [node name="playerWeaponChargerLauncher" type="Node2D"]
 script = ExtResource("1_oaxn8")
@@ -15,7 +15,7 @@ projectile_scene = ExtResource("2_pyjwu")
 
 [node name="LauncherSprite" type="Sprite2D" parent="Launcher"]
 position = Vector2(80, -136)
-texture = ExtResource("1_f42rx")
+texture = ExtResource("3_kuf0w")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="Launcher"]
 

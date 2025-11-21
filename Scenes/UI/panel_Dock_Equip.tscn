@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dhwek77khoy8i"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(1920, 1000)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
