@@ -30,7 +30,8 @@ const SCORE_TO_EXPERIENCE: float = 0.1
 	"bridge_type": null
 }
 @export var inventory: Dictionary = {
-	
+	"stackable_items": {},  # 可堆叠物品 {item_id: quantity}
+	"equipment_instances": []  # 装备实例数组
 }
 
 ## 舰船武器
@@ -107,3 +108,8 @@ func reset_to_default(new_character_id: int, player_input_name: String) -> void:
 		"engine_type": "user_engine_default",
 		"bridge_type": "user_bridge_default"
 	}
+
+func add_item(item_id:String, item_quntity:int):
+	var item_data = ItemDatabase.get_item(item_id)
+	if item_data is ItemMultiple:
+		pass

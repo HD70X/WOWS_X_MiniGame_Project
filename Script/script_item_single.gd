@@ -22,3 +22,7 @@ enum ItemType {
 @export var speed_bonus: float = 0
 # 船体专用属性
 @export var health_bonus: float = 0
+
+# 创建一个新的实例装备
+func create_instance() ->ItemSingleInstance:
+	return ItemSingleInstance.new(item_id)

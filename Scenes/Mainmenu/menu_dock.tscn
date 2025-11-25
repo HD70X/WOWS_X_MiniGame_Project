@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://bwxipmwf8mfl4"]
+[gd_scene load_steps=2 format=3 uid="uid://bwxipmwf8mfl4"]
+
+[ext_resource type="PackedScene" uid="uid://dgvghlysh3uop" path="res://Scenes/UI/panel_Dock_Tecktree.tscn" id="1_5b2gk"]
 
 [node name="Control" type="Control"]
 custom_minimum_size = Vector2(1920, 1080)
@@ -12,3 +14,13 @@ custom_minimum_size = Vector2(1920, 1080)
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
+current_tab = 0
+
+[node name="Control" parent="TabContainer" instance=ExtResource("1_5b2gk")]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Control2" parent="TabContainer" instance=ExtResource("1_5b2gk")]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
