@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="ItemSingle" load_steps=3 format=3 uid="uid://2iwhfwy782nr"]
 
 [ext_resource type="PackedScene" uid="uid://3juml2qd6c2" path="res://Scenes/Player/PlayerWeapon/user_weapon_depth_charge.tscn" id="1_sp6b4"]
-[ext_resource type="Script" uid="uid://dl1beystjqpks" path="res://Script/script_item_single.gd" id="1_uo4bo"]
+[ext_resource type="Script" uid="uid://dl1beystjqpks" path="res://Script/script_item_unstackable.gd" id="1_uo4bo"]
 
 [resource]
 script = ExtResource("1_uo4bo")

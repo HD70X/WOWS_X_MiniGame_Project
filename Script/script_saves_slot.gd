@@ -45,7 +45,7 @@ func setup(data: Dictionary):
 	level_label.text = "Lv.%d" % data["character_level"]
 	
 	# 如果有截图数据可以在这里加载
-	screenshot.texture = load("res://Art/Avatar/CaptainSprites/head.png")
+	screenshot.texture = load("res://Art/UI/temp_place_holder.png")
 
 func _on_toggled(toggled_state: bool):
 	if is_updating:

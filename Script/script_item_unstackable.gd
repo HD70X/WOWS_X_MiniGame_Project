@@ -1,5 +1,5 @@
 extends ItemData
-class_name ItemSingle
+class_name ItemUnstackable
 
 enum ItemType {
 	WEAPON,
@@ -24,5 +24,5 @@ enum ItemType {
 @export var health_bonus: float = 0
 
 # 创建一个新的实例装备
-func create_instance() ->ItemSingleInstance:
-	return ItemSingleInstance.new(item_id)
+func create_instance() ->ItemUnstackableInstance:
+	return ItemUnstackableInstance.new(item_id)

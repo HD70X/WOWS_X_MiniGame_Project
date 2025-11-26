@@ -1,5 +1,5 @@
 extends ItemData
-class_name ItemMultiple
+class_name ItemStackable
 
 enum ItemType {
 	ITEM
