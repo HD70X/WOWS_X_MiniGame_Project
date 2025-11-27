@@ -1,63 +1,99 @@
-[gd_scene load_steps=4 format=3 uid="uid://o5biofymkrg8"]
+[gd_scene load_steps=7 format=3 uid="uid://o5biofymkrg8"]
 
-[ext_resource type="Theme" uid="uid://btebubq8gxvay" path="res://Art/Theme Styles/GeneralUIThem.tres" id="1_ptc44"]
-[ext_resource type="Theme" uid="uid://bsk7cnee24ood" path="res://Art/Theme Styles/panelSaveSlot.tres" id="1_y7wc0"]
+[ext_resource type="Theme" uid="uid://bhwsdvjiu1y6w" path="res://Art/Theme Styles/panel_Dock_Equip_Select_Item_A.tres" id="1_j7ywk"]
 [ext_resource type="Script" uid="uid://dril0wobmg07s" path="res://Script/script_panel_dock_equip_list.gd" id="2_ny4aw"]
+[ext_resource type="Texture2D" uid="uid://cjl7gs8bitwtd" path="res://Art/UI/dock_equip_frame/dock_equip_equiped_icon_zoom_in.png" id="3_bkwi6"]
+[ext_resource type="Texture2D" uid="uid://85mtg5qxfdh7" path="res://Art/UI/dock_equip_frame/dock_equip_item_back_zoom_in.png" id="3_j7ywk"]
+[ext_resource type="Texture2D" uid="uid://bpdag8m4xonuu" path="res://Art/UI/dock_equip_frame/dock_equip_item_selected_frame.png" id="3_ny4aw"]
+[ext_resource type="Texture2D" uid="uid://d2ioivmjdwxod" path="res://Art/UI/temp_place_holder.png" id="4_bkwi6"]
 
 [node name="DockEquipment" type="Button"]
-custom_minimum_size = Vector2(800, 100)
+custom_minimum_size = Vector2(180, 180)
 offset_right = 8.0
 offset_bottom = 8.0
-theme = ExtResource("1_y7wc0")
-toggle_mode = true
+theme = ExtResource("1_j7ywk")
 script = ExtResource("2_ny4aw")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 0
-offset_right = 800.0
-offset_bottom = 100.0
-theme = ExtResource("1_ptc44")
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_right = 20
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
-layout_mode = 2
-size_flags_vertical = 4
-theme_override_constants/separation = 10
-
-[node name="Control" type="Control" parent="MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(80, 80)
-layout_mode = 2
-size_flags_horizontal = 0
-
-[node name="ItemIcon" type="TextureRect" parent="MarginContainer/HBoxContainer/Control"]
-custom_minimum_size = Vector2(80, 80)
+[node name="IconContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(138, 138)
 layout_mode = 1
-anchors_preset = 4
+anchors_preset = 8
+anchor_left = 0.5
 anchor_top = 0.5
+anchor_right = 0.5
 anchor_bottom = 0.5
-offset_top = -32.0
-offset_right = 64.0
-offset_bottom = 32.0
+offset_left = -69.0
+offset_top = -69.0
+offset_right = 69.0
+offset_bottom = 69.0
+grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Background" type="TextureRect" parent="IconContainer"]
+visible = false
+custom_minimum_size = Vector2(138, 138)
+layout_mode = 2
+texture = ExtResource("3_j7ywk")
 expand_mode = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
+[node name="ItemIcon" type="TextureRect" parent="IconContainer"]
+custom_minimum_size = Vector2(138, 138)
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
-theme_override_constants/margin_left = 40
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
+texture = ExtResource("4_bkwi6")
+expand_mode = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer"]
+[node name="EquipedIcon" type="TextureRect" parent="IconContainer"]
+visible = false
+texture_filter = 4
+custom_minimum_size = Vector2(138, 138)
 layout_mode = 2
-theme_override_constants/separation = 10
+texture = ExtResource("3_bkwi6")
+expand_mode = 1
 
-[node name="ItemName" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+visible = false
+texture_filter = 1
+texture_repeat = 1
+custom_minimum_size = Vector2(180, 180)
+layout_mode = 0
+offset_right = 180.0
+offset_bottom = 180.0
+texture = ExtResource("3_ny4aw")
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="NameContainer" type="MarginContainer" parent="."]
+visible = false
+custom_minimum_size = Vector2(156, 156)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -78.0
+offset_top = -78.0
+offset_right = 78.0
+offset_bottom = 78.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextBackground" type="ColorRect" parent="NameContainer"]
+custom_minimum_size = Vector2(156, 37)
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "NameNameName"
+size_flags_vertical = 8
+color = Color(0, 0, 0, 0.4509804)
+
+[node name="Name" type="Label" parent="NameContainer"]
+custom_minimum_size = Vector2(156, 37)
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 12
+text = "NAME"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
 
 [connection signal="toggled" from="." to="." method="_on_toggled"]

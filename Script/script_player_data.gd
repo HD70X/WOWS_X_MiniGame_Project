@@ -89,6 +89,10 @@ func load_from_resource(other: PlayerDataClass) -> void:
 	equiped_items = other.equiped_items.duplicate(true)
 	unlocked_items = other.unlocked_items.duplicate(true)
 	inventory = other.inventory.duplicate(true)
+	saving_time = other.saving_time
+	sound_volume = other.sound_volume
+	music_volume = other.music_volume
+	language = other.language
 
 # 设置为默认数据
 func reset_to_default(new_character_id: int, player_input_name: String) -> void:
@@ -139,7 +143,7 @@ func add_item(item_id:String, item_quantity:int) -> Array:
 		# 不可堆叠道具，创建实例
 		for i in range(item_quantity):
 			var instance = item_data.create_instance()
-			inventory["unstackable_instances"].append(instance.to_dict())
+			inventory["unstackable_instances"].append(instance)
 			created_instance_ids.append(instance.instance_id)
 			return created_instance_ids
 	return []
