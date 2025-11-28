@@ -1,13 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://bewrt1dpkip21"]
+[gd_scene load_steps=3 format=3 uid="uid://bewrt1dpkip21"]
 
-[ext_resource type="Texture2D" uid="uid://baci5h1rhpyab" path="res://Art/Avatar/artShip.png" id="1_67yvr"]
+[ext_resource type="Texture2D" uid="uid://d2ioivmjdwxod" path="res://Art/UI/temp_place_holder.png" id="1_415uk"]
+[ext_resource type="Texture2D" uid="uid://bd2y3kuqp47xq" path="res://Art/Avatar/ship_sprite/sprite_playership_hull.png" id="2_g30b4"]
 
 [node name="DockerShip" type="Node2D"]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(43.5, -37)
-scale = Vector2(1.305, 1)
-texture = ExtResource("1_67yvr")
+[node name="ShipSupertructure" type="Sprite2D" parent="."]
+position = Vector2(448, -148)
+texture = ExtResource("1_415uk")
 
 [node name="WeaponSlots" type="Node2D" parent="."]
 
@@ -27,3 +27,6 @@ position = Vector2(-69, -18)
 [node name="EngineUpgrade" type="Node2D" parent="EquipmentSlots"]
 
 [node name="BridgeUpgrade" type="Node2D" parent="EquipmentSlots"]
+
+[node name="ShipHull" type="Sprite2D" parent="."]
+texture = ExtResource("2_g30b4")

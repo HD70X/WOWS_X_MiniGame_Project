@@ -49,44 +49,14 @@ size_flags_horizontal = 0
 visible = false
 layout_mode = 2
 
-[node name="EquipTabContainer" type="TabContainer" parent="MarginContainer/MarginContainer/HBoxContainer/LeftContainer/LeftSection"]
+[node name="EquipTabContainer" type="MarginContainer" parent="MarginContainer/MarginContainer/HBoxContainer/LeftContainer/LeftSection"]
 layout_mode = 2
-current_tab = 0
 
-[node name="HullTab" type="ScrollContainer" parent="MarginContainer/MarginContainer/HBoxContainer/LeftContainer/LeftSection/EquipTabContainer"]
-custom_minimum_size = Vector2(800, 800)
+[node name="Label" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer/LeftContainer/LeftSection/EquipTabContainer"]
 layout_mode = 2
-metadata/_tab_index = 0
 
-[node name="HullList" type="VBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/LeftContainer/LeftSection/EquipTabContainer/HullTab"]
+[node name="EquipList" type="VBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/LeftContainer/LeftSection/EquipTabContainer"]
 custom_minimum_size = Vector2(800, 20)
-layout_mode = 2
-
-[node name="EngineTab" type="ScrollContainer" parent="MarginContainer/MarginContainer/HBoxContainer/LeftContainer/LeftSection/EquipTabContainer"]
-visible = false
-custom_minimum_size = Vector2(800, 800)
-layout_mode = 2
-metadata/_tab_index = 1
-
-[node name="EngineList" type="VBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/LeftContainer/LeftSection/EquipTabContainer/EngineTab"]
-layout_mode = 2
-
-[node name="BridgeTab" type="ScrollContainer" parent="MarginContainer/MarginContainer/HBoxContainer/LeftContainer/LeftSection/EquipTabContainer"]
-visible = false
-custom_minimum_size = Vector2(800, 800)
-layout_mode = 2
-metadata/_tab_index = 2
-
-[node name="BridgeList" type="VBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/LeftContainer/LeftSection/EquipTabContainer/BridgeTab"]
-layout_mode = 2
-
-[node name="WeaponTab" type="ScrollContainer" parent="MarginContainer/MarginContainer/HBoxContainer/LeftContainer/LeftSection/EquipTabContainer"]
-visible = false
-custom_minimum_size = Vector2(800, 800)
-layout_mode = 2
-metadata/_tab_index = 3
-
-[node name="WeaponList" type="VBoxContainer" parent="MarginContainer/MarginContainer/HBoxContainer/LeftContainer/LeftSection/EquipTabContainer/WeaponTab"]
 layout_mode = 2
 
 [node name="RightContainer" type="MarginContainer" parent="MarginContainer/MarginContainer/HBoxContainer"]

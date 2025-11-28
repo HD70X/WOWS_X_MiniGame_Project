@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bwxipmwf8mfl4"]
 
-[ext_resource type="PackedScene" uid="uid://dgvghlysh3uop" path="res://Scenes/UI/panel_Dock_Tecktree.tscn" id="1_5b2gk"]
+[ext_resource type="PackedScene" uid="uid://dgvghlysh3uop" path="res://Scenes/UI/panel_dock_tecktree.tscn" id="1_5b2gk"]
 
 [node name="Control" type="Control"]
 custom_minimum_size = Vector2(1920, 1080)

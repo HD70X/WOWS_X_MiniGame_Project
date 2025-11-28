@@ -1,0 +1,61 @@
+[gd_scene load_steps=6 format=3 uid="uid://ciwy0mx8un6dj"]
+
+[ext_resource type="Theme" uid="uid://bhwsdvjiu1y6w" path="res://Art/Theme Styles/panel_Dock_Equip_Select_Item_A.tres" id="1_6vmeo"]
+[ext_resource type="Script" uid="uid://cgypvhloacwud" path="res://Script/script_panel_dock_ship_slot_button.gd" id="2_orqyi"]
+[ext_resource type="Texture2D" uid="uid://cvb0nbw7kcdbc" path="res://Art/UI/dock_ship_slot_fram/dock_ship_slot_back.png" id="3_u3doc"]
+[ext_resource type="Texture2D" uid="uid://fnp81d6i0shf" path="res://Art/UI/dock_ship_slot_fram/dock_ship_slot_empty.png" id="5_6vmeo"]
+[ext_resource type="Texture2D" uid="uid://bpdag8m4xonuu" path="res://Art/UI/dock_equip_frame/dock_equip_item_selected_frame.png" id="6_q140h"]
+
+[node name="Button" type="Button"]
+custom_minimum_size = Vector2(180, 180)
+offset_right = 8.0
+offset_bottom = 8.0
+theme = ExtResource("1_6vmeo")
+script = ExtResource("2_orqyi")
+
+[node name="IconContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(138, 138)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -69.0
+offset_top = -69.0
+offset_right = 69.0
+offset_bottom = 69.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="TextureRect" parent="IconContainer"]
+custom_minimum_size = Vector2(138, 138)
+layout_mode = 2
+texture = ExtResource("3_u3doc")
+expand_mode = 1
+
+[node name="ItemIcon" type="TextureRect" parent="IconContainer"]
+custom_minimum_size = Vector2(138, 138)
+layout_mode = 2
+expand_mode = 1
+
+[node name="EmptyIcon" type="TextureRect" parent="IconContainer"]
+texture_filter = 4
+custom_minimum_size = Vector2(138, 138)
+layout_mode = 2
+texture = ExtResource("5_6vmeo")
+expand_mode = 1
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+visible = false
+texture_filter = 1
+texture_repeat = 1
+custom_minimum_size = Vector2(180, 180)
+layout_mode = 0
+offset_right = 180.0
+offset_bottom = 180.0
+texture = ExtResource("6_q140h")
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
