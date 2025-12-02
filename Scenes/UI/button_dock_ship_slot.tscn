@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://ciwy0mx8un6dj"]
+[gd_scene load_steps=7 format=3 uid="uid://ciwy0mx8un6dj"]
 
 [ext_resource type="Theme" uid="uid://bhwsdvjiu1y6w" path="res://Art/Theme Styles/panel_Dock_Equip_Select_Item_A.tres" id="1_6vmeo"]
 [ext_resource type="Script" uid="uid://cgypvhloacwud" path="res://Script/script_panel_dock_ship_slot_button.gd" id="2_orqyi"]
 [ext_resource type="Texture2D" uid="uid://cvb0nbw7kcdbc" path="res://Art/UI/dock_ship_slot_fram/dock_ship_slot_back.png" id="3_u3doc"]
 [ext_resource type="Texture2D" uid="uid://fnp81d6i0shf" path="res://Art/UI/dock_ship_slot_fram/dock_ship_slot_empty.png" id="5_6vmeo"]
+[ext_resource type="Texture2D" uid="uid://bm3mdqxpwqiq3" path="res://Art/UI/dock_ship_slot_fram/dock_ship_slot_selected.png" id="5_orqyi"]
 [ext_resource type="Texture2D" uid="uid://bpdag8m4xonuu" path="res://Art/UI/dock_equip_frame/dock_equip_item_selected_frame.png" id="6_q140h"]
 
 [node name="Button" type="Button"]
@@ -28,13 +29,27 @@ offset_bottom = 69.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Background" type="TextureRect" parent="IconContainer"]
+[node name="Background" type="NinePatchRect" parent="IconContainer"]
 custom_minimum_size = Vector2(138, 138)
 layout_mode = 2
 texture = ExtResource("3_u3doc")
-expand_mode = 1
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+
+[node name="SelectedRect" type="NinePatchRect" parent="IconContainer"]
+visible = false
+custom_minimum_size = Vector2(138, 138)
+layout_mode = 2
+texture = ExtResource("5_orqyi")
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
 
 [node name="ItemIcon" type="TextureRect" parent="IconContainer"]
+visible = false
 custom_minimum_size = Vector2(138, 138)
 layout_mode = 2
 expand_mode = 1
@@ -46,7 +61,7 @@ layout_mode = 2
 texture = ExtResource("5_6vmeo")
 expand_mode = 1
 
-[node name="NinePatchRect" type="NinePatchRect" parent="."]
+[node name="PointedRect" type="NinePatchRect" parent="."]
 visible = false
 texture_filter = 1
 texture_repeat = 1

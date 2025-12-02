@@ -37,6 +37,7 @@ func setup(item_instance: ItemUnstackableInstance):
 	if item_template.icon:
 		item_icon.texture = item_template.icon
 	else:
+		# item_icon.visible = false
 		item_icon.texture = load("res://Art/UI/temp_place_holder_128.png")
 	if item_instance.equiped == true:
 		equipped_icon.visible = true

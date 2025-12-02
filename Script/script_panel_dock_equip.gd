@@ -17,7 +17,7 @@ var instance_list_array : Array = [weapon_instances, hull_instances, bridge_inst
 @onready var bridge_list = $MarginContainer/MarginContainer/HBoxContainer/LeftContainer/LeftSection/EquipTabContainer/BridgeTab/BridgeList
 @onready var engine_list = $MarginContainer/MarginContainer/HBoxContainer/LeftContainer/LeftSection/EquipTabContainer/EngineTab/EngineList
 
-const ITEM_BUTTON_SCENE = preload("res://Scenes/UI/panel_Dock_Equip_Select_Item.tscn")
+const ITEM_BUTTON_SCENE = preload("res://Scenes/UI/button_dock_equip_list_item.tscn")
 
 var empty_weapon = {
 	"instance_id": "EMPTY_WEAPON_I",

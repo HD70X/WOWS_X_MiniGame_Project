@@ -1,32 +1,49 @@
-[gd_scene load_steps=3 format=3 uid="uid://bewrt1dpkip21"]
+[gd_scene load_steps=4 format=3 uid="uid://bewrt1dpkip21"]
 
 [ext_resource type="Texture2D" uid="uid://d2ioivmjdwxod" path="res://Art/UI/temp_place_holder.png" id="1_415uk"]
+[ext_resource type="PackedScene" uid="uid://f6780xsmgc76" path="res://Scenes/Mainmenu/captain_Mainmenu.tscn" id="2_1tkul"]
 [ext_resource type="Texture2D" uid="uid://bd2y3kuqp47xq" path="res://Art/Avatar/ship_sprite/sprite_playership_hull.png" id="2_g30b4"]
 
 [node name="DockerShip" type="Node2D"]
 
 [node name="ShipSupertructure" type="Sprite2D" parent="."]
+z_index = -6
 position = Vector2(448, -148)
 texture = ExtResource("1_415uk")
 
 [node name="WeaponSlots" type="Node2D" parent="."]
 
-[node name="WeaponSlot1" type="Node2D" parent="WeaponSlots"]
-position = Vector2(127, -30)
+[node name="WeaponSlot1" type="TextureRect" parent="WeaponSlots"]
+offset_left = 1264.0
+offset_top = -303.0
+offset_right = 1264.0
+offset_bottom = -303.0
 
-[node name="WeaponSlot2" type="Node2D" parent="WeaponSlots"]
-position = Vector2(0, -18)
+[node name="WeaponSlot2" type="TextureRect" parent="WeaponSlots"]
+offset_left = -213.0
+offset_top = 17.0
+offset_right = -213.0
+offset_bottom = 17.0
 
-[node name="WeaponSlot3" type="Node2D" parent="WeaponSlots"]
-position = Vector2(-69, -18)
+[node name="WeaponSlot3" type="TextureRect" parent="WeaponSlots"]
+offset_left = -1406.0
+offset_top = 15.0
+offset_right = -1406.0
+offset_bottom = 15.0
 
 [node name="EquipmentSlots" type="Node2D" parent="."]
 
 [node name="HullUpgrade" type="Node2D" parent="EquipmentSlots"]
 
 [node name="EngineUpgrade" type="Node2D" parent="EquipmentSlots"]
+position = Vector2(-698, 200)
 
 [node name="BridgeUpgrade" type="Node2D" parent="EquipmentSlots"]
+position = Vector2(554, -533)
+
+[node name="Captain" parent="." instance=ExtResource("2_1tkul")]
+z_index = -5
+position = Vector2(682, -145)
 
 [node name="ShipHull" type="Sprite2D" parent="."]
 texture = ExtResource("2_g30b4")
