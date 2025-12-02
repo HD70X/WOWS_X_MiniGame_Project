@@ -2,7 +2,7 @@ extends Button
 
 signal slot_selected(slot_index: int, equipment_type: String)
 @export var slot_index: int = 0
-@export_enum("weapon", "bridge", "armor", "engine") var equipment_type: String = "weapon"
+@export_enum("weapon", "bridge", "hull", "engine") var equipment_type: String = "weapon"
 @onready var slot_icon: TextureRect = $IconContainer/ItemIcon
 @onready var empty_icon: TextureRect = $IconContainer/EmptyIcon
 @onready var slot_frame: NinePatchRect = $IconContainer/SelectedRect
@@ -20,6 +20,8 @@ var tween: Tween
 var is_highlighted := false
 
 func _ready():
+	add_to_group("dock_ship_slots_group")  # 不需要全局分组
+	
 	# 初始化显示状态
 	hover_frame.visible = false
 

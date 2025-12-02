@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bm3mdqxpwqiq3" path="res://Art/UI/dock_ship_slot_fram/dock_ship_slot_selected.png" id="5_orqyi"]
 [ext_resource type="Texture2D" uid="uid://bpdag8m4xonuu" path="res://Art/UI/dock_equip_frame/dock_equip_item_selected_frame.png" id="6_q140h"]
 
-[node name="Button" type="Button"]
+[node name="Button" type="Button" groups=["dock_ship_slots_group"]]
 custom_minimum_size = Vector2(180, 180)
 offset_right = 8.0
 offset_bottom = 8.0
@@ -29,7 +29,7 @@ offset_bottom = 69.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Background" type="NinePatchRect" parent="IconContainer"]
+[node name="Background" type="NinePatchRect" parent="IconContainer" groups=["dock_ship_slots_group"]]
 custom_minimum_size = Vector2(138, 138)
 layout_mode = 2
 texture = ExtResource("3_u3doc")

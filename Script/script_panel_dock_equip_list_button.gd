@@ -1,10 +1,13 @@
 extends Button
 
-#signal  equip_selected(item_id: String)
+signal  equip_selected(item_template_id: String, item_instance_id: String)
+
 @onready var icon_container: MarginContainer = $IconContainer
 @onready var item_icon: TextureRect = $IconContainer/ItemIcon
 @onready var equipped_icon: TextureRect = $IconContainer/EquipedIcon
 @onready var hover_frame: NinePatchRect = $NinePatchRect
+@onready var highlight_frame: NinePatchRect = $IconContainer/Highlight
+@onready var empty_icon: TextureRect = $IconContainer/EmptyIcon
 @onready var name_container: MarginContainer = $NameContainer
 @onready var name_label: Label = $NameContainer/Name
 
@@ -15,6 +18,8 @@ extends Button
 
 var tween: Tween
 var is_highlighted := false
+var item_template_id: String
+var item_instance_id: String
 
 func _ready():
 	# 初始化显示状态
@@ -36,26 +41,28 @@ func setup(item_instance: ItemUnstackableInstance):
 		name_label.text = "Unknow Item"
 	if item_template.icon:
 		item_icon.texture = item_template.icon
+		item_icon.visible = true
+		empty_icon.visible = false
 	else:
-		# item_icon.visible = false
-		item_icon.texture = load("res://Art/UI/temp_place_holder_128.png")
+		item_icon.visible = false
+		empty_icon.visible = true
 	if item_instance.equiped == true:
 		equipped_icon.visible = true
 
 # 显示/隐藏已装备标记
-func show_equipped_badge(slot_name: String):
+func show_equipped_badge():
 	equipped_icon.visible = true
 	
 func hide_equipped_badge():
 	equipped_icon.visible = false
 
-# 设置高亮状态（当前槽位装备）
+# 设置高亮状态
 func set_highlight(enabled: bool):
 	is_highlighted = enabled
-	if enabled:
-		modulate = Color(1.2, 1.2, 1.5)  # 淡蓝色高亮
+	if is_highlighted:
+		highlight_frame.visible = true
 	else:
-		modulate = Color(1, 1, 1)
+		highlight_frame.visible = false
 
 # 鼠标悬浮事件
 func _on_mouse_entered():
@@ -81,9 +88,15 @@ func _animate_icon_size(target_size: Vector2):
 
 	tween.tween_property(item_icon, "custom_minimum_size", target_size, animation_duration)
 	tween.tween_property(item_icon, "size", target_size, animation_duration)
+	tween.tween_property(empty_icon, "custom_minimum_size", target_size, animation_duration)
+	tween.tween_property(empty_icon, "size", target_size, animation_duration)
 
 # 名称淡入动画
 func _animate_name_fade_in():
 	name_container.modulate.a = 0
 	var fade_tween = create_tween()
 	fade_tween.tween_property(name_container, "modulate:a", 1.0, 0.15)
+
+
+func _on_pressed() -> void:
+	equip_selected.emit(item_template_id, item_instance_id) # Replace with function body.

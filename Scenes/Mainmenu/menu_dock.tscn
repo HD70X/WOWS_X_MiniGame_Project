@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://dgvghlysh3uop" path="res://Scenes/UI/panel_dock_tecktree.tscn" id="1_5b2gk"]
 
-
 [node name="Control" type="Control"]
 custom_minimum_size = Vector2(1920, 1080)
 layout_mode = 3
