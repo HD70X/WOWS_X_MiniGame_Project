@@ -59,9 +59,10 @@ func _on_creat_button_pressed() -> void:
 
 func _on_play_button_pressed() -> void:
 	if selected_character_id != -1:
-		PlayerData.load_from_resource(SaveManager.load_game(selected_character_id))
+		var loaded_data = SaveManager.load_game(selected_character_id)
+		PlayerData.load_from_resource(loaded_data)
 		# SaveManager.def_save(SaveManager.load_game(selected_character_id))
-		get_tree().change_scene_to_file("res://Scenes/Level/levelScene_level1.tscn")
+		get_tree().change_scene_to_file("res://Scenes/Mainmenu/menu_dock.tscn")
 
 func _on_delete_button_pressed() -> void:
 	if selected_character_id != -1:
@@ -69,10 +70,11 @@ func _on_delete_button_pressed() -> void:
 		refresh_save_list()
 
 func _on_character_created(character_id):
-		refresh_save_list()
-		PlayerData.load_from_resource(SaveManager.load_game(character_id))
-		# SaveManager.def_save(SaveManager.load_game(character_id))
-		get_tree().change_scene_to_file("res://Scenes/Level/levelScene_level1.tscn")
+	refresh_save_list()
+	var loaded_data = SaveManager.load_game(character_id)
+	PlayerData.load_from_resource(loaded_data)
+	# SaveManager.def_save(SaveManager.load_game(character_id))
+	get_tree().change_scene_to_file("res://Scenes/Mainmenu/menu_dock.tscn")
 
 func _on_return_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/Mainmenu/MainMenu.tscn")

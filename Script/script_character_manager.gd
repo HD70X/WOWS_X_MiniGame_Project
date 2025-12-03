@@ -39,13 +39,16 @@ func get_all_character() -> Array:
 	return characters
 
 # 创建新角色
-func create_new_character(character_name) -> int:
+func create_new_character(character_name: String) -> int:
 	# 使用Unix时间戳作为ID，确保唯一性
 	var character_id = Time.get_unix_time_from_system()
 	if character_name.is_empty():
 		character_name = "Captain Cap"
-	PlayerData.reset_to_default(character_id, character_name)
-	SaveManager.save_game(character_id)
+	# 创建新的数据实例
+	var new_character = PlayerDataClass.new()
+	new_character.reset_to_default(character_id, character_name)
+	
+	SaveManager.save_game(new_character)
 	return character_id
 
 func delete_character(character_id: int) -> bool:

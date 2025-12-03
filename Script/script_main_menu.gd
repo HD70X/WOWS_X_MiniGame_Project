@@ -14,7 +14,7 @@ func _ready():
 
 func _on_start_button_pressed():
 	PlayerData.load_from_dict(SaveManager.load_default())
-	get_tree().change_scene_to_file("res://Scenes/Level/levelScene_level1.tscn")
+	get_tree().change_scene_to_file("res://Scenes/Mainmenu/menu_dock.tscn")
 
 func _on_level_choice_button_pressed():
 	get_tree().change_scene_to_packed(character_select_scene)

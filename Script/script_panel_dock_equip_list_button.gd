@@ -26,7 +26,8 @@ func _ready():
 	hover_frame.visible = false
 	name_container.visible = false
 	equipped_icon.visible = false
-
+	# 添加到装备列表按钮的分组
+	add_to_group("dock_player_equip_group")
 	# 连接信号
 	mouse_entered.connect(_on_mouse_entered)
 	mouse_exited.connect(_on_mouse_exited)
@@ -35,6 +36,8 @@ func _ready():
 func setup(item_instance: ItemUnstackableInstance):
 	# item_id = add_item_id
 	var item_template = ItemDatabase.get_item(item_instance.template_id)
+	item_template_id = item_template.item_id
+	item_instance_id = item_instance.instance_id
 	if item_template.item_name:
 		name_label.text = item_template.item_name
 	else:

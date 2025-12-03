@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://m11wmhshgt5k"]
 
 [ext_resource type="Texture2D" uid="uid://baci5h1rhpyab" path="res://Art/Avatar/artShip.png" id="1_a6dia"]
-[ext_resource type="Script" uid="uid://v7ltn6s0ugry" path="res://Script/scripe_player_ship.gd" id="1_oxjg5"]
+[ext_resource type="Script" uid="uid://v7ltn6s0ugry" path="res://Script/script_player_ship.gd" id="1_oxjg5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oxjg5"]
 size = Vector2(217, 17)

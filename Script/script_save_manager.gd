@@ -24,20 +24,20 @@ func def_save(data):
 	save_data(DEF_SAVE_PATH, data)
 
 # 正式存档方法
-func save_game(character_id: int):
+func save_game(data: PlayerDataClass):
 	# 基于当前玩家游玩的角色，确定角色存档路径和所需的数据
-	var file_path = get_character_file_path(character_id)
+	var file_path = get_character_file_path(data.character_id)
 	var back_path = file_path + ".bak"
-	PlayerData.saving_time = Time.get_unix_time_from_system()
+	data.saving_time = Time.get_unix_time_from_system()
 	# 如果正式存档存在，先备份
 	if FileAccess.file_exists(file_path):
 		var old_data = load_data(file_path)
 		if old_data:
 			save_data(back_path, old_data)
 	# 保存新数据到正式存档
-	if save_data(file_path, PlayerData):
+	if save_data(file_path, data):
 		# 成功后更新临时存档
-		def_save(PlayerData)
+		def_save(data)
 		return true
 	return false
 
@@ -69,12 +69,12 @@ func load_game(character_id: int) -> PlayerDataClass:
 	var file_path = get_character_file_path(character_id)
 	# 尝试自动加载正式存档
 	var data = load_data(file_path)
-	if not data.is_empty():
+	if data:
 		return data
 	# 如果主存档未返回，则尝试备用存档
 	var back_path = file_path + ".bak"
 	data = load_data(back_path)
-	if not data.is_empty():
+	if data:
 		# push_waring("Using back up save.")
 		return data
 	# 如果上述都没有获取有效数据，则使用临时存档
@@ -88,8 +88,9 @@ func load_game(character_id: int) -> PlayerDataClass:
 		return create_default_character_data(character_id) 
 
 func create_default_character_data(character_id) -> PlayerDataClass:
-	PlayerData.reset_to_default(character_id, "Captain Cap")
-	return PlayerData
+	var new_data = PlayerDataClass.new()
+	new_data.reset_to_default(character_id, "Captain Cap")
+	return new_data
 
 # 获取当前玩家的player_id
 func get_player_id() -> int:

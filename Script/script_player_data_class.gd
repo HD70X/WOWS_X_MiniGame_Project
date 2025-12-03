@@ -1,5 +1,5 @@
-extends Node
-class_name PlayerDataBase
+extends Resource
+class_name PlayerDataClass
 
 # 角色顺序标识
 @export var character_id: int = 0

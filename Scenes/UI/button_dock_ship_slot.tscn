@@ -29,7 +29,7 @@ offset_bottom = 69.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Background" type="NinePatchRect" parent="IconContainer" groups=["dock_ship_slots_group"]]
+[node name="Background" type="NinePatchRect" parent="IconContainer"]
 custom_minimum_size = Vector2(138, 138)
 layout_mode = 2
 texture = ExtResource("3_u3doc")

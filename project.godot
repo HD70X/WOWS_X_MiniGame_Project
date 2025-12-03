@@ -17,10 +17,10 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-PlayerData="*res://Script/script_player_data.gd"
 ItemDatabase="*res://Script/script_item_database.gd"
 SaveManager="*res://Script/script_save_manager.gd"
 CharacterManager="*res://Script/script_character_manager.gd"
+PlayerData="*res://Script/script_player_data.gd"
 
 [display]
 

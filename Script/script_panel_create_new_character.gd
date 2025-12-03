@@ -9,6 +9,7 @@ func _on_create_button_pressed() -> void:
 	character_created.emit(new_id)
 	# 关闭弹窗
 	hide()
+	
 
 func _on_cancel_button_pressed() -> void:
 	hide()
