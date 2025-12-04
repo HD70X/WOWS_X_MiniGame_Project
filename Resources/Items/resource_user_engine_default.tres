@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="ItemSingle" load_steps=2 format=3 uid="uid://cfhdys7p8tih7"]
+[gd_resource type="Resource" script_class="ItemUnstackable" load_steps=3 format=3 uid="uid://cfhdys7p8tih7"]
 
+[ext_resource type="Texture2D" uid="uid://ct4eg4sww321i" path="res://Art/Avatar/equipment_icon/user_engine_default.png" id="1_k0vah"]
 [ext_resource type="Script" uid="uid://dl1beystjqpks" path="res://Script/script_item_unstackable.gd" id="1_xp8du"]
 
 [resource]
@@ -8,6 +9,7 @@ item_Type = 3
 speed_bonus = 0.25
 item_id = "user_engine_default"
 item_name = "Default Engine"
+icon = ExtResource("1_k0vah")
 unlock_exp = 0
 unlock_credits = 0
 metadata/_custom_type_script = "uid://dl1beystjqpks"

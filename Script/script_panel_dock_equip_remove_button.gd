@@ -1,6 +1,6 @@
 extends Button
 
-signal  equip_selected(item_template_id: String, item_instance_id: String)
+signal  remove_equipment()
 
 @onready var icon_container: MarginContainer = $IconContainer
 @onready var item_icon: TextureRect = $IconContainer/ItemIcon
@@ -26,8 +26,6 @@ func _ready():
 	hover_frame.visible = false
 	name_container.visible = false
 	equipped_icon.visible = false
-	# 添加到装备列表按钮的分组
-	add_to_group("dock_player_equip_group")
 	# 连接信号
 	mouse_entered.connect(_on_mouse_entered)
 	mouse_exited.connect(_on_mouse_exited)
@@ -101,5 +99,4 @@ func _animate_name_fade_in():
 
 
 func _on_pressed() -> void:
-	equip_selected.emit(item_template_id, item_instance_id) # Replace with function body.
-	print("按钮被点击，信号发射", item_template_id, item_instance_id)
+	remove_equipment.emit() # Replace with function body.

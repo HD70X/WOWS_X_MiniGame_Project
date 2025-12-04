@@ -1,8 +1,6 @@
 # script_panel_dock_equip.gd
 extends Panel
 
-# 预设一些按钮组，以便更好的实现点击切换显示效果
-var equip_button_group = ButtonGroup.new()
 # 预设一些数组，用于临时储存玩家的装备信息，并用于展示，玩家的装配修改将会保存到这些数据中，必要时进行丢弃（还原或者正式储存）
 var weapon_instances: Array
 var hull_instances: Array
@@ -28,6 +26,7 @@ var equip_type_enum = ["weapon", "bridge", "hull", "engine"]
 var _equip_slot: Array = [] 
 
 const ITEM_BUTTON_SCENE = preload("res://Scenes/UI/button_dock_equip_list_item.tscn")
+const REMOVE_BUTTON_SCENE = preload("res://Scenes/UI/button_dock_equip_list_remove.tscn")
 
 var empty_weapon = {
 	"instance_id": "EMPTY_WEAPON_I",
@@ -45,6 +44,7 @@ func _ready() -> void:
 	load_equip()
 	# 初始化舰船槽位按钮信号
 	_connect_ship_slot_button()
+	_connect_player_equip_button()
 	# 将安装的组件同布到槽位（之后添加同步到舰船）
 	refresh_ship_slot()
 
@@ -60,20 +60,25 @@ func _connect_player_equip_button():
 
 # 舰船槽位被点击的方法
 func _on_slot_selected(slot_index: int, equipment_type: String, button: Node):
-	var instance_id = null
+	print("槽位序号：", slot_index, "装备类型：", equipment_type, "按钮：", button)
+	var instance_id: String = ""
 	current_slot = slot_index
 	current_equipment_type = equipment_type
 	# 确定当前的槽位中是否安装了装备, 如果安装了，可以回传实例id，用于标记安装中的装备
 	if _equiped_items[slot_index]:
 		instance_id = _equiped_items[slot_index].instance_id
 	# 首先刷新当前对应类型的装备列表
-	refresh_equipment_list(equipment_type, instance_id, button)
-	
+	refresh_equipment_list(equipment_type, instance_id)
+	# 将当前按钮槽位高亮
+	for btn in get_tree().get_nodes_in_group("dock_ship_slots_group"):
+		btn.set_selected(false)
+	button.set_selected(true)
 
 # 背包物品被点击的方法
 func _on_equip_selected(item_template_id: String, item_instance_id: String):
 	pass
-
+func on_unequip():
+	pass
 func reflesh_temporary_player_equip():
 	temporary_player_equip = PlayerData.equiped_items
 
@@ -126,17 +131,14 @@ func refresh_ship_slot():
 			_equip_slot[i].update_slot(_equiped_items[i])
 
 # 刷新装备列表，更新背包显示
-func refresh_equipment_list(equip_type: String, instance_id: String, button: Node):
+func refresh_equipment_list(equip_type: String, instance_id: String = ""):
 	# 清理可能的旧节点
 	for child in equipment_list.get_children():
 		child.queue_free()
 	# 添加"卸载"按钮
-	var empty_button = Button.new()
-	empty_button.text = "Remove"
-	empty_button.toggle_mode = true
-	empty_button.button_group = equip_button_group
+	var empty_button = REMOVE_BUTTON_SCENE.instantiate()
 	equipment_list.add_child(empty_button)
-	# empty_button.pressed.connect(func(): on_unequip())
+	empty_button.remove_equipment.connect(on_unequip)
 	# 确定装备类型展示对应的列表
 	if equip_type == equip_type_enum[0]:
 		for instance in weapon_instances:
@@ -182,4 +184,3 @@ func refresh_equipment_list(equip_type: String, instance_id: String, button: Nod
 				instance_button.set_highlight(true)
 				# 可选：禁用按钮以防止重复选择
 				instance_button.disabled = true
-	button.set_selected(true)

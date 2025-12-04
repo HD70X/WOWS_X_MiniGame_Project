@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="ItemSingle" load_steps=3 format=3 uid="uid://2iwhfwy782nr"]
+[gd_resource type="Resource" script_class="ItemUnstackable" load_steps=4 format=3 uid="uid://2iwhfwy782nr"]
 
+[ext_resource type="Texture2D" uid="uid://dsa6tp4lo8iql" path="res://Art/Avatar/equipment_icon/user_weapon_depth.png" id="1_qccxp"]
 [ext_resource type="PackedScene" uid="uid://3juml2qd6c2" path="res://Scenes/Player/PlayerWeapon/user_weapon_depth_charge.tscn" id="1_sp6b4"]
 [ext_resource type="Script" uid="uid://dl1beystjqpks" path="res://Script/script_item_unstackable.gd" id="1_uo4bo"]
 
@@ -11,6 +12,7 @@ cooldown = 2.0
 damagerange = 1.0
 item_id = "player_weapon_depth_charge"
 item_name = "Default Depth Charge"
+icon = ExtResource("1_qccxp")
 unlock_exp = 0
 unlock_credits = 0
 metadata/_custom_type_script = "uid://dl1beystjqpks"

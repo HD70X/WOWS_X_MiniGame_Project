@@ -46,12 +46,12 @@ func create_new_character(character_name: String) -> int:
 	if character_name.is_empty():
 		character_name = "Captain Cap"
 	# 创建新的数据实例
-	print("创建新角色：", character_name, character_id)
+	# print("创建新角色：", character_name, character_id)
 	var new_character = PlayerDataClass.new()
 	new_character.reset_to_default(character_id, character_name)
-	print("初始化角色", new_character)
+	# print("初始化角色", new_character)
 	SaveManager.save_game(new_character)
-	print("初始化角色已保存")
+	# print("初始化角色已保存")
 	return character_id
 
 func delete_character(character_id: int) -> bool:

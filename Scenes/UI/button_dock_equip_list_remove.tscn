@@ -1,19 +1,20 @@
-[gd_scene load_steps=8 format=3 uid="uid://o5biofymkrg8"]
+[gd_scene load_steps=9 format=3 uid="uid://b0dkygbgwt40j"]
 
-[ext_resource type="Theme" uid="uid://bhwsdvjiu1y6w" path="res://Art/Theme Styles/panel_Dock_Equip_Select_Item_A.tres" id="1_avs38"]
-[ext_resource type="Script" uid="uid://dril0wobmg07s" path="res://Script/script_panel_dock_equip_list_button.gd" id="2_1euyy"]
-[ext_resource type="Texture2D" uid="uid://bm3mdqxpwqiq3" path="res://Art/UI/dock_ship_slot_fram/dock_ship_slot_selected.png" id="3_1euyy"]
-[ext_resource type="Texture2D" uid="uid://85mtg5qxfdh7" path="res://Art/UI/dock_equip_frame/dock_equip_item_back_zoom_in.png" id="3_5mvab"]
-[ext_resource type="Texture2D" uid="uid://fnp81d6i0shf" path="res://Art/UI/dock_ship_slot_fram/dock_ship_slot_empty.png" id="5_1euyy"]
-[ext_resource type="Texture2D" uid="uid://cjl7gs8bitwtd" path="res://Art/UI/dock_equip_frame/dock_equip_equiped_icon_zoom_in.png" id="5_e62mu"]
-[ext_resource type="Texture2D" uid="uid://bpdag8m4xonuu" path="res://Art/UI/dock_equip_frame/dock_equip_item_selected_frame.png" id="6_06sv8"]
+[ext_resource type="Theme" uid="uid://bhwsdvjiu1y6w" path="res://Art/Theme Styles/panel_Dock_Equip_Select_Item_A.tres" id="1_fwk7e"]
+[ext_resource type="Script" uid="uid://bfon5prymmupe" path="res://Script/script_panel_dock_equip_remove_button.gd" id="2_fwk7e"]
+[ext_resource type="Texture2D" uid="uid://bm3mdqxpwqiq3" path="res://Art/UI/dock_ship_slot_fram/dock_ship_slot_selected.png" id="3_rdi0i"]
+[ext_resource type="Texture2D" uid="uid://85mtg5qxfdh7" path="res://Art/UI/dock_equip_frame/dock_equip_item_back_zoom_in.png" id="4_lc3kw"]
+[ext_resource type="Texture2D" uid="uid://o0kxj1m8txvj" path="res://Art/Avatar/equipment_icon/remove_icon.png" id="5_0xhl8"]
+[ext_resource type="Texture2D" uid="uid://fnp81d6i0shf" path="res://Art/UI/dock_ship_slot_fram/dock_ship_slot_empty.png" id="5_lc645"]
+[ext_resource type="Texture2D" uid="uid://cjl7gs8bitwtd" path="res://Art/UI/dock_equip_frame/dock_equip_equiped_icon_zoom_in.png" id="6_81oyb"]
+[ext_resource type="Texture2D" uid="uid://bpdag8m4xonuu" path="res://Art/UI/dock_equip_frame/dock_equip_item_selected_frame.png" id="7_xd2k0"]
 
 [node name="DockInventorySlot" type="Button" groups=["dock_player_equip_group"]]
 custom_minimum_size = Vector2(180, 180)
 offset_right = 8.0
 offset_bottom = 8.0
-theme = ExtResource("1_avs38")
-script = ExtResource("2_1euyy")
+theme = ExtResource("1_fwk7e")
+script = ExtResource("2_fwk7e")
 
 [node name="IconContainer" type="MarginContainer" parent="."]
 custom_minimum_size = Vector2(138, 138)
@@ -34,7 +35,7 @@ grow_vertical = 2
 visible = false
 custom_minimum_size = Vector2(138, 138)
 layout_mode = 2
-texture = ExtResource("3_1euyy")
+texture = ExtResource("3_rdi0i")
 patch_margin_left = 2
 patch_margin_top = 2
 patch_margin_right = 2
@@ -43,18 +44,20 @@ patch_margin_bottom = 2
 [node name="Background" type="TextureRect" parent="IconContainer"]
 custom_minimum_size = Vector2(138, 138)
 layout_mode = 2
-texture = ExtResource("3_5mvab")
+texture = ExtResource("4_lc3kw")
 expand_mode = 1
 
 [node name="ItemIcon" type="TextureRect" parent="IconContainer"]
 custom_minimum_size = Vector2(138, 138)
 layout_mode = 2
+texture = ExtResource("5_0xhl8")
 expand_mode = 1
 
 [node name="EmptyIcon" type="TextureRect" parent="IconContainer"]
+visible = false
 custom_minimum_size = Vector2(138, 138)
 layout_mode = 2
-texture = ExtResource("5_1euyy")
+texture = ExtResource("5_lc645")
 expand_mode = 1
 
 [node name="EquipedIcon" type="TextureRect" parent="IconContainer"]
@@ -62,7 +65,7 @@ visible = false
 texture_filter = 4
 custom_minimum_size = Vector2(138, 138)
 layout_mode = 2
-texture = ExtResource("5_e62mu")
+texture = ExtResource("6_81oyb")
 expand_mode = 1
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
@@ -73,7 +76,7 @@ custom_minimum_size = Vector2(180, 180)
 layout_mode = 0
 offset_right = 180.0
 offset_bottom = 180.0
-texture = ExtResource("6_06sv8")
+texture = ExtResource("7_xd2k0")
 patch_margin_left = 4
 patch_margin_top = 4
 patch_margin_right = 4
@@ -106,7 +109,7 @@ custom_minimum_size = Vector2(156, 37)
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_font_sizes/font_size = 12
-text = "NAME"
+text = "Remove"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3

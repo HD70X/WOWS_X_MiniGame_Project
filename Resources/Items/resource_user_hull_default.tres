@@ -1,13 +1,15 @@
-[gd_resource type="Resource" script_class="ItemSingle" load_steps=2 format=3 uid="uid://c12q7th4w7b07"]
+[gd_resource type="Resource" script_class="ItemUnstackable" load_steps=3 format=3 uid="uid://c12q7th4w7b07"]
 
+[ext_resource type="Texture2D" uid="uid://2hb0en3kksw5" path="res://Art/Avatar/equipment_icon/user_hull_default.png" id="1_qbp7f"]
 [ext_resource type="Script" uid="uid://dl1beystjqpks" path="res://Script/script_item_unstackable.gd" id="1_vkp2v"]
 
 [resource]
 script = ExtResource("1_vkp2v")
-item_Type = 3
+item_Type = 2
 health_bonus = 0.25
 item_id = "user_hull_default"
 item_name = "Default Hull"
+icon = ExtResource("1_qbp7f")
 unlock_exp = 0
 unlock_credits = 0
 metadata/_custom_type_script = "uid://dl1beystjqpks"

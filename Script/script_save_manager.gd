@@ -14,12 +14,12 @@ func get_character_file_path(character_id: int) -> String:
 # 通用的储存脚本
 func save_data(file_path: String, data: PlayerDataClass) -> bool:
 	var temp_data: PlayerDataResource = data.to_resource()
-	print("转换存档数据：", temp_data)
+	# print("转换存档数据：", temp_data)
 	var err = ResourceSaver.save(temp_data, file_path)
 	if err != OK:
 		push_error("保存失败，错误码：" + str(err))
 		return false
-	print("保存成功：", file_path)
+	# print("保存成功：", file_path)
 	return true
 
 # 通用读取
@@ -29,7 +29,7 @@ static func load_data(file_path: String) -> PlayerDataClass:
 		return null
 	
 	var resource_data: PlayerDataResource = ResourceLoader.load(file_path)
-	print("读取存档数据：", file_path, resource_data)
+	# print("读取存档数据：", file_path, resource_data)
 	
 	if resource_data == null:
 		push_error("加载 Resource 失败")
@@ -50,7 +50,7 @@ func save_game(data: PlayerDataClass):
 	var file_path = get_character_file_path(data.character_id)
 	var back_path = file_path + ".bak"
 	data.saving_time = Time.get_unix_time_from_system()
-	print("尝试储存数据：", file_path, data)
+	# print("尝试储存数据：", file_path, data)
 	# 如果正式存档存在，先备份
 	if FileAccess.file_exists(file_path):
 		var old_data = load_data(file_path)
@@ -59,7 +59,7 @@ func save_game(data: PlayerDataClass):
 	# 保存新数据到正式存档
 	if save_data(file_path, data):
 		# 成功后更新临时存档
-		print("存档成功，更新默认存档")
+		# print("存档成功，更新默认存档")
 		def_save(data)
 		return true
 	return false
@@ -92,13 +92,13 @@ func load_game(character_id: int) -> PlayerDataClass:
 	var file_path = get_character_file_path(character_id)
 	# 尝试自动加载正式存档
 	var data = load_data(file_path)
-	print("读取存档信息：", file_path, data)
+	# print("读取存档信息：", file_path, data)
 	if data:
 		return data
 	# 如果主存档未返回，则尝试备用存档
 	var back_path = file_path + ".bak"
 	data = load_data(back_path)
-	print("原始存档不存在，采用备用存档：", back_path, data)
+	# print("原始存档不存在，采用备用存档：", back_path, data)
 	if data:
 		# push_waring("Using back up save.")
 		return data
@@ -106,13 +106,13 @@ func load_game(character_id: int) -> PlayerDataClass:
 	data = load_data(DEF_SAVE_PATH)
 	if data:
 		if data.character_id == character_id:
-			print("备用存档不存在，采用默认存档：", back_path, data)
+			# print("备用存档不存在，采用默认存档：", back_path, data)
 			return data
 		else:
-			print("默认存档不匹配，无法加载，创建新存档")
+			# print("默认存档不匹配，无法加载，创建新存档")
 			return create_default_character_data(character_id) 
 	else:
-		print("默认存档不存在，无法加载，创建新存档")
+		# print("默认存档不存在，无法加载，创建新存档")
 		return create_default_character_data(character_id) 
 
 func create_default_character_data(character_id) -> PlayerDataClass:
