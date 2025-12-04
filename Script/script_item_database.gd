@@ -1,3 +1,4 @@
+# script_item_database.gd
 extends Node
 
 var items: Dictionary = {}

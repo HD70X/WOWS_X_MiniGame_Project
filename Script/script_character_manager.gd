@@ -1,3 +1,4 @@
+# script_character_manager.gd
 extends Node
 
 const SAVE_PATH = "user://characters/"
@@ -21,20 +22,20 @@ func get_all_character() -> Array:
 	var file_name = dir.get_next()
 	while file_name != "":
 		# 筛选save文件
-		if file_name.ends_with(".save"):
+		if file_name.ends_with(".tres"):
 			# 不处理默认存档
-			if file_name != "character_def.save":
+			if file_name != "character_def.tres":
 				# 不打开字典的前提下提取角色ID（去掉扩展名和前缀，只要序号）
-				var character_id_str = file_name.trim_prefix("character_").trim_suffix(".save")
+				var character_id_str = file_name.trim_prefix("character_").trim_suffix(".tres")
 				var character_id = character_id_str.to_int()
 				var character_data = SaveManager.load_game(character_id)
-				if character_data != null and not character_data.is_empty():
+				if character_data:
 					characters.append(character_data)
 		file_name = dir.get_next()
 	dir.list_dir_end()
 	# 按保存时间排序
 	characters.sort_custom(func(a,b):
-		return a.get("saving_time", 0) > b.get("saving_time", 0)
+		return a.saving_time > b.saving_time
 	)
 	return characters
 
@@ -45,10 +46,12 @@ func create_new_character(character_name: String) -> int:
 	if character_name.is_empty():
 		character_name = "Captain Cap"
 	# 创建新的数据实例
+	print("创建新角色：", character_name, character_id)
 	var new_character = PlayerDataClass.new()
 	new_character.reset_to_default(character_id, character_name)
-	
+	print("初始化角色", new_character)
 	SaveManager.save_game(new_character)
+	print("初始化角色已保存")
 	return character_id
 
 func delete_character(character_id: int) -> bool:

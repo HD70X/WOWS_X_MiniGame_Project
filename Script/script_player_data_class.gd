@@ -1,4 +1,5 @@
-extends Resource
+# script_player_data_class.gd
+extends Node
 class_name PlayerDataClass
 
 # 角色顺序标识
@@ -110,12 +111,49 @@ func add_item(item_id:String, item_quantity:int) -> Array:
 			var instance = item_data.create_instance()
 			inventory["unstackable_instances"].append(instance)
 			created_instance_ids.append(instance.instance_id)
+			print("注册角色创建装备实例列表", created_instance_ids)
 			return created_instance_ids
 	return []
 	
 # 使用instance_id获取道具数据
 func find_instance(instance_id: String) -> ItemUnstackableInstance:
-	for item in inventory["stackable_items"]:
+	for item in inventory["unstackable_instances"]:
 		if item.instance_id == instance_id:
 			return item
 	return null
+
+# 添加一个方法，可以将PlayerDataClass数据转换为PlayerDataSaving
+# 转换为可保存的 Resource
+func to_resource() -> PlayerDataResource:
+	var data = PlayerDataResource.new()
+	data.character_id = character_id
+	data.character_name = character_name
+	data.character_level = character_level
+	data.level_unlock = level_unlock
+	data.current_exp = current_exp
+	data.total_exp = total_exp
+	data.credits = credits
+	data.equiped_items = equiped_items.duplicate(true)
+	data.unlocked_items = unlocked_items.duplicate(true)
+	data.inventory = inventory.duplicate(true)
+	data.saving_time = saving_time
+	data.sound_volume = sound_volume
+	data.music_volume = music_volume
+	return data
+	
+# 从 Resource 加载数据
+func from_resource(data: PlayerDataResource):
+	character_id = data.character_id
+	character_name = data.character_name
+	character_level = data.character_level
+	level_unlock = data.level_unlock
+	current_exp = data.current_exp
+	total_exp = data.total_exp
+	credits = data.credits
+	equiped_items = data.equiped_items.duplicate(true)
+	unlocked_items = data.unlocked_items.duplicate(true)
+	inventory = data.inventory.duplicate(true)
+	saving_time = data.saving_time
+	sound_volume = data.sound_volume
+	music_volume = data.music_volume
+	language = data.language

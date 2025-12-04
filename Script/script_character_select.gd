@@ -71,8 +71,11 @@ func _on_delete_button_pressed() -> void:
 
 func _on_character_created(character_id):
 	refresh_save_list()
+	# print("刷新存档列表")
 	var loaded_data = SaveManager.load_game(character_id)
+	# print("从存档加载数据")
 	PlayerData.load_from_resource(loaded_data)
+	# print("从数据中读取")
 	# SaveManager.def_save(SaveManager.load_game(character_id))
 	get_tree().change_scene_to_file("res://Scenes/Mainmenu/menu_dock.tscn")
 

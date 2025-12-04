@@ -1,50 +1,44 @@
-# player_data_manager.gd
-extends Node
+extends Resource
+class_name PlayerDataResource
 
-# 持有实际的数据实例
-var data: PlayerDataClass = PlayerDataClass.new()
+# 角色顺序标识
+@export var character_id: int = 0
 
-# 保存路径
-const SAVE_PATH = "user://player_data.tres"
+# 角色基本信息
+@export var character_name: String = "Captain Cap"
+@export var character_level: int = 1
 
-# 提供便捷的属性访问（可选）
-var character_id: int:
-	get: return data.character_id
-	set(value): data.character_id = value
+# 进度
+@export var level_unlock: int = 1  # 已解锁的关卡
 
-var character_name: String:
-	get: return data.character_name
-	set(value): data.character_name = value
+# 游戏货币/资源
+var credits: int = 0 # 创建银币，并赋值初始单位1000枚
+@export var total_exp: int = 0 # 玩家经验
+@export var current_exp: int = 0 # 玩家经验
 
-var level: int:
-	get: return data.level
-	set(value): data.level = value
+# 经济计算常量
+const SCORE_TO_CREDITS: float = 0.2
+const SCORE_TO_EXPERIENCE: float = 0.1
 
-# ... 为其他属性添加类似的 getter/setter
+# 储存时间
+@export var saving_time: float
 
-# 加载数据
-func load_data() -> void:
-	if ResourceLoader.exists(SAVE_PATH):
-		var loaded_data = ResourceLoader.load(SAVE_PATH)
-		if loaded_data is PlayerDataClass:
-			data = loaded_data
-			print("数据加载成功")
-		else:
-			print("数据格式错误，使用默认数据")
-	else:
-		print("没有找到存档，使用默认数据")
+# 道具解锁/安装/库存
+@export var unlocked_items: Array = []
+@export var equiped_items: Dictionary = {
+	"weapon_slot_1": null,
+	"weapon_slot_2": null,
+	"weapon_slot_3": null,
+	"hull_type": null,
+	"bridge_type": null,
+	"engine_type": null
+}
+@export var inventory: Dictionary = {
+	"stackable_items": {},  # 可堆叠物品 {item_id: quantity}
+	"unstackable_instances": []  # 装备实例数组
+}
 
-# 保存数据
-func save_data() -> void:
-	var error = ResourceSaver.save(data, SAVE_PATH)
-	if error == OK:
-		print("数据保存成功")
-	else:
-		print("数据保存失败: ", error)
-
-# 重置数据
-func reset_data() -> void:
-	data = PlayerDataClass.new()
-
-func _ready():
-	load_data()
+# 游戏设置
+@export var sound_volume: float = 1.0
+@export var music_volume: float = 1.0
+@export var language: String = "zh_CN"

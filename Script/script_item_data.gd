@@ -1,3 +1,4 @@
+# script_item_data.gd
 extends Resource
 class_name ItemData
 

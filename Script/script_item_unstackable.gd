@@ -1,3 +1,4 @@
+# script_item_unstackable.gd
 extends ItemData
 class_name ItemUnstackable
 

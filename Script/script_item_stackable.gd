@@ -1,3 +1,4 @@
+# script_item_stackable.gd
 extends ItemData
 class_name ItemStackable
 

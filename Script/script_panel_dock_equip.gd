@@ -1,3 +1,4 @@
+# script_panel_dock_equip.gd
 extends Panel
 
 # 预设一些按钮组，以便更好的实现点击切换显示效果
@@ -24,7 +25,7 @@ var equip_type_enum = ["weapon", "bridge", "hull", "engine"]
 @onready var bridge_slot_1 = $MarginContainer/HBoxContainer/RightContainer/RightSection/HBoxContainer/BridgeSlotGroup/HBoxContainer/BridgeSlot
 @onready var hull_slot_1 = $MarginContainer/HBoxContainer/RightContainer/RightSection/HBoxContainer/HullSlotGroup/HBoxContainer/HullSlot
 @onready var engine_slot_1 = $MarginContainer/HBoxContainer/RightContainer/RightSection/HBoxContainer/EngineSlotGroup/HBoxContainer/EngineSlot
-var _equip_slot: Array = [weapon_slot_1, weapon_slot_2, weapon_slot_3, bridge_slot_1, hull_slot_1, engine_slot_1] 
+var _equip_slot: Array = [] 
 
 const ITEM_BUTTON_SCENE = preload("res://Scenes/UI/button_dock_equip_list_item.tscn")
 
@@ -35,6 +36,7 @@ var empty_weapon = {
 }
 
 func _ready() -> void:
+	_equip_slot = [weapon_slot_1, weapon_slot_2, weapon_slot_3, bridge_slot_1, hull_slot_1, engine_slot_1] 
 	# 等待子场景的按钮准备完毕
 	await get_tree().process_frame
 	# 初始化装备列表和舰船上安装的组件信息（从玩家数据获取）

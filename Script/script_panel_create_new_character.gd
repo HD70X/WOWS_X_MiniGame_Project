@@ -1,3 +1,4 @@
+# script_panel_create_new_character.gd
 extends CanvasLayer
 
 signal character_created(character_id)  # 定义信号

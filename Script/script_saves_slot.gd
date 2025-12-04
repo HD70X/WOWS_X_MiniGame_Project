@@ -19,30 +19,21 @@ func _ready():
 	mouse_exited.connect(_on_mouse_exited)
 	point_icon.visible = false  # 默认隐藏角标
 
-func setup(data: Dictionary):
-	character_id = data["character_id"]
-	name_label.text = data["character_name"]
+func setup(data: PlayerDataClass):
+	character_id = data.character_id
+	name_label.text = data.character_name
 	
 	# 格式化存档时间
-	if data.has("saving_time"):
-		var saving_time = data["saving_time"]
-		# 如果是数字（Unix时间戳），转换为字典
-		if typeof(saving_time) == TYPE_FLOAT or typeof(saving_time) == TYPE_INT:
-			var time_dict = Time.get_datetime_dict_from_unix_time(int(saving_time))
-			time_label.text = "%d-%02d-%02d %02d:%02d" % [
-				time_dict["year"], time_dict["month"], time_dict["day"],
-				time_dict["hour"], time_dict["minute"]
-				]
-		# 如果已经是字典格式
-		elif typeof(saving_time) == TYPE_DICTIONARY:
-			time_label.text = "%d-%02d-%02d %02d:%02d" % [
-				saving_time["year"], saving_time["month"], saving_time["day"],
-				saving_time["hour"], saving_time["minute"]
-				]
+	if data.saving_time > 0:
+		var time_dict = Time.get_datetime_dict_from_unix_time(int(data.saving_time))
+		time_label.text = "%d-%02d-%02d %02d:%02d" % [
+			time_dict["year"], time_dict["month"], time_dict["day"],
+			time_dict["hour"], time_dict["minute"]
+		]
 	else:
 		time_label.text = "未知时间"
 	
-	level_label.text = "Lv.%d" % data["character_level"]
+	level_label.text = "Lv.%d" % data.character_level
 	
 	# 如果有截图数据可以在这里加载
 	screenshot.texture = load("res://Art/UI/temp_place_holder.png")
