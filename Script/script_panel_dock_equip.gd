@@ -167,7 +167,7 @@ func load_equip():
 
 # 使用临时的安装装备字典内内容刷新玩家的装备槽显示（后续追加舰船预览显示）
 func refresh_ship_slot():
-	print("temporary_player_equip: ", temporary_player_equip)
+	# print("temporary_player_equip: ", temporary_player_equip)
 	for i in range(_equiped_items.size()):
 		_equip_slot[i].update_slot(_equiped_items[i])
 

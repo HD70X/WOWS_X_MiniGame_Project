@@ -18,6 +18,7 @@ position = Vector2(80, -136)
 texture = ExtResource("3_kuf0w")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="Launcher"]
+emitting = false
 
 [node name="ProjectileSpawnPoint" type="Marker2D" parent="."]
 position = Vector2(200, -216)
