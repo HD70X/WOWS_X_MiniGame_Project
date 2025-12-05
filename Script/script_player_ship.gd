@@ -11,6 +11,8 @@ var weapon_nodes: Array = []  # 存储实例化的武器节点
 var equipped_hull: String
 var equipped_engine: String
 var equipped_bridge: String
+var _equiped_items: Array
+var _equiped_weapons: Array
 
 # 计算后的属性
 var current_max_hp: int
@@ -28,16 +30,15 @@ func _ready():
 
 # 从全局配置中读取玩家的装备
 func load_equipment_from_config():
-	# 从全局配置（PlayerData 单例）读取玩家在船坞中配置的装备
-	var equiped_items = PlayerData.equiped_items
-	equipped_weapons = [
-		equiped_items["weapon_slot_1"],
-		equiped_items["weapon_slot_2"],
-		equiped_items["weapon_slot_3"]
-	]
-	equipped_hull = equiped_items["hull_type"]
-	equipped_engine = equiped_items["engine_type"]
-	equipped_bridge = equiped_items["bridge_type"]
+	# 按照固定顺序从字典中获取装备
+	for slot_key in PlayerData.slot_order:
+		var instance_id = PlayerData.equiped_items[slot_key]
+		if instance_id and instance_id != "":
+			var equiped_instance = PlayerData.find_instance(instance_id)
+			_equiped_items.append(equiped_instance if equiped_instance else null)
+		else:
+			_equiped_items.append(null)
+	_equiped_weapons = [_equiped_items[0], _equiped_items[1], _equiped_items[2]]
 
 # 计算舰船正确属性
 func calculate_stats():
@@ -45,9 +46,9 @@ func calculate_stats():
 	current_speed = base_speed
 	# 按照安装组件重新计算hp和速度
 	if equipped_hull:
-		current_max_hp *= 1 + ItemDatabase.get_item(equipped_hull).health_bonus
+		current_max_hp *= 1 + ItemDatabase.get_item(_equiped_items[4].template_id).health_bonus
 	if equipped_engine:
-		current_speed *= 1 + ItemDatabase.get_item(equipped_engine).speed_bonus
+		current_speed *= 1 + ItemDatabase.get_item(_equiped_items[5].template_id).speed_bonus
 	hp = current_max_hp
 
 # 实例化武器
@@ -55,9 +56,9 @@ func instantiate_weapons():
 	var weapon_slots = $WeaponSlots.get_children()
 	weapon_nodes.clear()
 	# 遍历每个武器槽位
-	for i in range(weapon_slots.size()):
-		if equipped_weapons[i]:
-			var temp_weapon_scene = ItemDatabase.get_item(equipped_weapons[i]).scene_path
+	for i in range(_equiped_weapons.size()):
+		if _equiped_weapons[i]:
+			var temp_weapon_scene = ItemDatabase.get_item(_equiped_weapons[i].template_id).scene_path
 			var weapon = temp_weapon_scene.instantiate()
 
 			# 挂载到对应槽位

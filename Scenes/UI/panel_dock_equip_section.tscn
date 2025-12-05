@@ -10,16 +10,27 @@
 bg_color = Color(0.04, 0.04, 0.04, 0.23529412)
 
 [node name="EquipPanel" type="Panel"]
-custom_minimum_size = Vector2(1920, 1022)
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_cmmnu")
 script = ExtResource("1_7og5e")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-custom_minimum_size = Vector2(1920, 1022)
-layout_mode = 0
-offset_right = 1920.0
-offset_bottom = 1022.0
+custom_minimum_size = Vector2(1920, 0)
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -952.0
+offset_right = 952.0
+grow_horizontal = 2
+grow_vertical = 2
 theme = ExtResource("1_cmmnu")
 theme_override_constants/margin_left = 40
 theme_override_constants/margin_top = 40
@@ -71,11 +82,12 @@ layout_mode = 2
 [node name="PreviewContainer" type="SubViewportContainer" parent="MarginContainer/HBoxContainer/RightContainer/RightSection"]
 custom_minimum_size = Vector2(1050, 450)
 layout_mode = 2
+size_flags_vertical = 3
 stretch = true
 
 [node name="PreviewViewport" type="SubViewport" parent="MarginContainer/HBoxContainer/RightContainer/RightSection/PreviewContainer"]
 handle_input_locally = false
-size = Vector2i(1100, 450)
+size = Vector2i(1100, 716)
 render_target_update_mode = 4
 
 [node name="DockerShip" parent="MarginContainer/HBoxContainer/RightContainer/RightSection/PreviewContainer/PreviewViewport" instance=ExtResource("1_4uvna")]

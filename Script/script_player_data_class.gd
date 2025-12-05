@@ -30,10 +30,18 @@ const SCORE_TO_EXPERIENCE: float = 0.1
 	"weapon_slot_1": null,
 	"weapon_slot_2": null,
 	"weapon_slot_3": null,
-	"hull_type": null,
 	"bridge_type": null,
+	"hull_type": null,
 	"engine_type": null
 }
+@export var slot_order: Array = [
+	"weapon_slot_1",
+	"weapon_slot_2", 
+	"weapon_slot_3",
+	"bridge_type",
+	"hull_type",
+	"engine_type"
+]
 @export var inventory: Dictionary = {
 	"stackable_items": {},  # 可堆叠物品 {item_id: quantity}
 	"unstackable_instances": []  # 装备实例数组
