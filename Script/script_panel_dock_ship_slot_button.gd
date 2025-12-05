@@ -37,7 +37,7 @@ func update_slot(item_instance: ItemUnstackableInstance):
 		slot_icon.texture = item_template.icon
 		empty_icon.visible = false
 	else:
-		slot_icon.visible = false
+		slot_icon.texture = null
 		empty_icon.visible = true
 
 # 鼠标悬浮事件

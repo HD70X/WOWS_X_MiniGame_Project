@@ -73,7 +73,7 @@ func reset_to_default(new_character_id: int, player_input_name: String) -> void:
 	credits = 0
 	unlocked_items = []
 	# 创建基础武器，船体，引擎，舰桥实例
-	var weapon_ids = self.add_item("player_weapon_depth_charge", 1)
+	var weapon_ids = self.add_item("player_weapon_depth_charge", 10)
 	var hull_ids = self.add_item("user_hull_default", 1)
 	var engine_ids = self.add_item("user_engine_default", 1)
 	var bridge_ids = self.add_item("user_bridge_default", 1)
@@ -107,12 +107,12 @@ func add_item(item_id:String, item_quantity:int) -> Array:
 		return []
 	elif  item_data is ItemUnstackable:
 		# 不可堆叠道具，创建实例
-		for i in range(item_quantity):
+		for i in item_quantity:
 			var instance = item_data.create_instance()
 			inventory["unstackable_instances"].append(instance)
 			created_instance_ids.append(instance.instance_id)
 			print("注册角色创建装备实例列表", created_instance_ids)
-			return created_instance_ids
+		return created_instance_ids
 	return []
 	
 # 使用instance_id获取道具数据

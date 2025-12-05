@@ -20,7 +20,7 @@ func _init(_template_id: String = ""):
 		self.equiped = false
 
 func _generate_unique_id() -> String:
-	return template_id + "_" + str(Time.get_unix_time_from_system())
+	return template_id + "_" + str(ResourceUID.create_id())
 
 func to_dict() -> Dictionary:
 	return{

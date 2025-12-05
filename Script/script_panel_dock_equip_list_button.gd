@@ -46,7 +46,6 @@ func setup(item_instance: ItemUnstackableInstance):
 		item_icon.texture = item_template.icon
 		empty_icon.visible = false
 	else:
-		item_icon.visible = false
 		empty_icon.visible = true
 	if item_instance.equiped == true:
 		equipped_icon.visible = true
@@ -102,4 +101,3 @@ func _animate_name_fade_in():
 
 func _on_pressed() -> void:
 	equip_selected.emit(item_template_id, item_instance_id) # Replace with function body.
-	print("按钮被点击，信号发射", item_template_id, item_instance_id)
